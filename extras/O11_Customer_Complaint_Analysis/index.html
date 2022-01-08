@@ -1,0 +1,965 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Paul DeCamp (KringleCon Attendee: Nutmeg)">
+      
+      
+        <link rel="canonical" href="https://pdecamp.github.io/HHC2021-Solutions-Guide/extras/O11_Customer_Complaint_Analysis/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.3">
+    
+    
+      
+        <title>Extra Content for Customer Complaint Analysis - 2021 SANS Holiday Hack Challenge Solutions Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.edf004c2.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#4cae4f">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="red">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#extra-content-for-objective-11-customer-complaint-analysis" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="2021 SANS Holiday Hack Challenge Solutions Guide" class="md-header__button md-logo" aria-label="2021 SANS Holiday Hack Challenge Solutions Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            2021 SANS Holiday Hack Challenge Solutions Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Extra Content for Customer Complaint Analysis
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="2021 SANS Holiday Hack Challenge Solutions Guide" class="md-nav__button md-logo" aria-label="2021 SANS Holiday Hack Challenge Solutions Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    2021 SANS Holiday Hack Challenge Solutions Guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Welcome
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Objectives
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Objectives" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Objectives
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../objectives/O1_KringleCon_Orientation/" class="md-nav__link">
+        1) KringleCon Orientation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../objectives/O2_Where_in_the_World_is_Caramel_Santaigo/" class="md-nav__link">
+        2) Where in the World is Caramel Santaigo
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../objectives/O3_Thaw_Frost_Towers_Entrance/" class="md-nav__link">
+        3) Thaw Frost Tower's Entrance
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../objectives/O4_Slot_Machine_Investigation/" class="md-nav__link">
+        4) Slot Machine Investigation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../objectives/O5_Strange_USB_Device/" class="md-nav__link">
+        5) Strange USB Device
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../objectives/O6_Shellcode_Primer/" class="md-nav__link">
+        6) Shellcode Primer
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../objectives/O7_Printer_Exploitation/" class="md-nav__link">
+        7) Printer Exploitation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../objectives/O8_Kerberoasting_on_an_Open_Fire/" class="md-nav__link">
+        8) Kerberoasting on an Open Fire
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../objectives/O9_Splunk/" class="md-nav__link">
+        9) Splunk!
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../objectives/O10_Now_Hiring/" class="md-nav__link">
+        10) Now Hiring!
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../objectives/O11_Customer_Complaint_Analysis/" class="md-nav__link">
+        11) Customer Complaint Analysis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../objectives/O12_Frost_Tower_Website_Checkup/" class="md-nav__link">
+        12) Frost Tower Website Checkup
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../objectives/O13_FPGA_Programming/" class="md-nav__link">
+        13) FPGA Programming
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Terminal Challenges
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Terminal Challenges" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Terminal Challenges
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T2_Document_Analysis/" class="md-nav__link">
+        Pinny Sappington - Document Analysis / Exif Metadata
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T3_Grepping_for_Gold/" class="md-nav__link">
+        Greasy Gopherkins - Grepping for Gold
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T4_Logic_Munchers/" class="md-nav__link">
+        Noel Boetie - Logic Munchers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T5_IPv6_Sandbox/" class="md-nav__link">
+        Jewel Loggins - IPv6 Sandbox
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T6_Holiday_Hero/" class="md-nav__link">
+        Chimney Scissorsticks - Holiday Hero
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T8_HoHo_No/" class="md-nav__link">
+        Eve Snowshoes - HoHo No
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T9_Yara_Analysis/" class="md-nav__link">
+        Fitzy Shortstack - Yara Analysis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T10_IMDS_Exploration/" class="md-nav__link">
+        Noxious ODor - IMDS Exploration
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T11_Strace_Ltrace_Retrace/" class="md-nav__link">
+        Tinsel Upatree - Strace, Ltrace, Retrace
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T12_Elf_Code_Python/" class="md-nav__link">
+        Rib Bonbowford - Elf Code Python
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T13_Frostavator/" class="md-nav__link">
+        Grody Toiterson - Frostavator
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Extras
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Extras" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Extras
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O2_Where_in_the_World_is_Caramel_Santaigo/" class="md-nav__link">
+        Extra Content for Where in the World is Caramel Santaigo
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../T4_Logic_Munchers/" class="md-nav__link">
+        Extra Content for Logic Munchers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Extra Content for Customer Complaint Analysis
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Extra Content for Customer Complaint Analysis
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#all-the-complaints" class="md-nav__link">
+    All the complaints
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O12_Frost_Tower_Website_Checkup/" class="md-nav__link">
+        Extra Content for Frost Tower Website Checkup
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#all-the-complaints" class="md-nav__link">
+    All the complaints
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+<h1 id="extra-content-for-objective-11-customer-complaint-analysis">Extra content for <a href="../../objectives/O11_Customer_Complaint_Analysis/">Objective 11) Customer Complaint Analysis</a></h1>
+<h2 id="all-the-complaints">All the complaints</h2>
+<p>The pcap file for the objective contains 16 submissions to the customer complaint system.  </p>
+<p>If we use the Wireshark filter <code>http.request.method == POST</code> then we will get all 16 submissions and can read through each of them in the same way that we did to complete the main objective.</p>
+<p>Another method would be to use the <code>tshark</code> command line utility to output just the form data for each POST packet.<br>
+<code>tshark -r jackfrosttower-network.pcap -Y "http.request.method == "POST"" -T fields -e urlencoded-form.value</code></p>
+<p>All complaint submissions are listed in the table below.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Troll ID</th>
+<th>Guest Info</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Klug</td>
+<td>2234</td>
+<td>Funny looking man in room 1145</td>
+<td>I carry suitcase to room. Throw bag at bed and miss a little. Man is angry. He say suitcase is scuff. I say his face is scuff. He is more angry and I get no tip.</td>
+</tr>
+<tr>
+<td>Gavk</td>
+<td>2354</td>
+<td>Annoying woman in room 1239</td>
+<td>Woman call desk and complain that room is cold. I go to room, knock on door, and tell her nice that I eat beans at lunch and can warm room up. She slam door in Gavk face. So mean.</td>
+</tr>
+<tr>
+<td>Bluk</td>
+<td>2367</td>
+<td>Boring humans in room 1128</td>
+<td>I bring room service order. Use key card to go in. Woman getting undress. She scream and throw shoe at me. Shoe is tasty, but it not make up for her hurt my ears with scream.</td>
+</tr>
+<tr>
+<td>Euuk</td>
+<td>1973</td>
+<td>Ugly, mean couple in room 1032</td>
+<td>Euuk do an innocent "crop dust" in elevator as it reach ground floor. No biggie - everyone do this sometimes. Couple get in. Begin to retch. Look at me with mean-type nastiness. I have bad feels.</td>
+</tr>
+<tr>
+<td>Crag</td>
+<td>2351</td>
+<td>Bald man in room 1212</td>
+<td>Crag get in elevator. Man get in too. Crag push ALL buttons. Crag giggle because is funny joke. Man is no thinking funny. He has bad humor. He call Crag "unthinking brute." Crag is not brute.</td>
+</tr>
+<tr>
+<td>Urgh</td>
+<td>2633</td>
+<td>Stupid man in room 1215</td>
+<td>Bring drink to man at slot machine. Spill it on him a little. Urgh go to lick it off of him and he is angry. Say his is "shock" at Urgh behavior and lick is a bad idea. He is silly and mean.</td>
+</tr>
+<tr>
+<td>Yaqh</td>
+<td>2796</td>
+<td>Snooty lady in room 1024</td>
+<td>Lady call desk and ask for more towel. Yaqh take to room. Yaqh ask if she want more towel because she is like to steal. She say Yaqh is insult. Yaqh is not insult. Yaqh is Yaqh.</td>
+</tr>
+<tr>
+<td>Flud</td>
+<td>2083</td>
+<td>Very cranky lady in room 1024</td>
+<td>Lady call front desk. Complain "employee" is rude. Say she is insult and want to speak to manager. Send Flud to room. Lady say troll call her towels thief. I say stop steal towels if is bother her.</td>
+</tr>
+<tr>
+<td>Hagg</td>
+<td>2013</td>
+<td>Incredibly angry lady in room 1024</td>
+<td>Lady call front desk. I am walk by so I pick up phone. She is ANGRY and shout at me. Say she has never been so insult. I say she probably has but just didn't hear it.</td>
+</tr>
+<tr>
+<td>Muffy VonDuchess Sebastian</td>
+<td>I don't know. There were several of them.</td>
+<td>Room 1024</td>
+<td>I have never, in my life, been in a facility with such a horrible staff. They are rude and insulting. What kind of place is this? You can be sure that I (or my lawyer) will be speaking directly with Mr. Frost!</td>
+</tr>
+<tr>
+<td>Quib</td>
+<td>2539</td>
+<td>Ugly little man in room 1121</td>
+<td>He call desk and say his shoes need shine. He leave outside door. I go and get. I spit shine. One spot on shoes is bad so I lick a little. Quite tasty. I accidental eat shoe. I take other shoe back. I am proud I no eat. He is mean at me.</td>
+</tr>
+<tr>
+<td>Bloz</td>
+<td>2323</td>
+<td>Nasty bad woman in room 1125</td>
+<td>Bloz have tacos for lunch. Later, Bloz have very bad tummy and need to use potty immediate. Use key card on room on 11 floor. Bloz in bathroom doing business. Lady come in and scream. Bloz business quick done. She is rude.</td>
+</tr>
+<tr>
+<td>Wuuk</td>
+<td>2987</td>
+<td>Very crabby woman in room 1125</td>
+<td>Lady call desk and say toilet plug. Wuuk take plunger and go to room. Wuuk make innocent comment that lady poop like troll and say Wuuk is "outrageous."<br>Does that mean handsome?</td>
+</tr>
+<tr>
+<td>Kraq</td>
+<td>2383</td>
+<td>Rude couple in room 1117</td>
+<td>Kraq make teensy comment about man having bad toupee. Turn out it is not toupee. Kraq stand by comment - man have hair look like bad toupee. Man is angry and call Kraq many bad word. Kraq is just a pawn in great game of life.</td>
+</tr>
+<tr>
+<td>Ikky</td>
+<td>2743</td>
+<td>Family in room 1226</td>
+<td>Lady is sit in lobby holding wonderfully ugly doll. Ikky like ugly doll and ask where she get. Ikky use to decorate for Halloween. She get angry because is her baby. She say "I never!" Ikky say she must have at least once.</td>
+</tr>
+<tr>
+<td>Stuv</td>
+<td>2833</td>
+<td>Grumpy man in room 1119</td>
+<td>Man call front desk to complain about room be stuffy. Stuv say he is happy to get man and throw outside. Lot's of fresh air. And polar bears.</td>
+</tr>
+</tbody>
+</table>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../T4_Logic_Munchers/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Extra Content for Logic Munchers" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Extra Content for Logic Munchers
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../O12_Frost_Tower_Website_Checkup/" class="md-footer__link md-footer__link--next" aria-label="Next: Extra Content for Frost Tower Website Checkup" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Extra Content for Frost Tower Website Checkup
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.tabs.link"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.0bbba5b5.min.js"}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e1a181d9.min.js"></script>
+      
+    
+  </body>
+</html>

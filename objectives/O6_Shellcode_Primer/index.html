@@ -1,0 +1,1252 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Paul DeCamp (KringleCon Attendee: Nutmeg)">
+      
+      
+        <link rel="canonical" href="https://pdecamp.github.io/HHC2021-Solutions-Guide/objectives/O6_Shellcode_Primer/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.3">
+    
+    
+      
+        <title>6) Shellcode Primer - 2021 SANS Holiday Hack Challenge Solutions Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.edf004c2.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#4cae4f">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="red">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#objective-6-shellcode-primer" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="2021 SANS Holiday Hack Challenge Solutions Guide" class="md-header__button md-logo" aria-label="2021 SANS Holiday Hack Challenge Solutions Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            2021 SANS Holiday Hack Challenge Solutions Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              6) Shellcode Primer
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="2021 SANS Holiday Hack Challenge Solutions Guide" class="md-nav__button md-logo" aria-label="2021 SANS Holiday Hack Challenge Solutions Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    2021 SANS Holiday Hack Challenge Solutions Guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Welcome
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Objectives
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Objectives" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Objectives
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O1_KringleCon_Orientation/" class="md-nav__link">
+        1) KringleCon Orientation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O2_Where_in_the_World_is_Caramel_Santaigo/" class="md-nav__link">
+        2) Where in the World is Caramel Santaigo
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O3_Thaw_Frost_Towers_Entrance/" class="md-nav__link">
+        3) Thaw Frost Tower's Entrance
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O4_Slot_Machine_Investigation/" class="md-nav__link">
+        4) Slot Machine Investigation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O5_Strange_USB_Device/" class="md-nav__link">
+        5) Strange USB Device
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          6) Shellcode Primer
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        6) Shellcode Primer
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#hints-and-resources" class="md-nav__link">
+    Hints and Resources
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troll-introduction" class="md-nav__link">
+    Troll Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    Solution
+  </a>
+  
+    <nav class="md-nav" aria-label="Solution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-introduction" class="md-nav__link">
+    1 - Introduction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-loops" class="md-nav__link">
+    2 - Loops
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-getting-started" class="md-nav__link">
+    3 - Getting Started
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-returning-a-value" class="md-nav__link">
+    4 - Returning a Value
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-system-calls" class="md-nav__link">
+    5 - System Calls
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-calling-into-the-void" class="md-nav__link">
+    6 - Calling Into the Void
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-getting-rip" class="md-nav__link">
+    7 - Getting RIP
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-hello-world" class="md-nav__link">
+    8 - Hello, World!
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-hello-world" class="md-nav__link">
+    9 - Hello, World!!
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-opening-a-file" class="md-nav__link">
+    10 - Opening a File
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-reading-a-file" class="md-nav__link">
+    11 - Reading a File
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completion" class="md-nav__link">
+    Completion
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O7_Printer_Exploitation/" class="md-nav__link">
+        7) Printer Exploitation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O8_Kerberoasting_on_an_Open_Fire/" class="md-nav__link">
+        8) Kerberoasting on an Open Fire
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O9_Splunk/" class="md-nav__link">
+        9) Splunk!
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O10_Now_Hiring/" class="md-nav__link">
+        10) Now Hiring!
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O11_Customer_Complaint_Analysis/" class="md-nav__link">
+        11) Customer Complaint Analysis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O12_Frost_Tower_Website_Checkup/" class="md-nav__link">
+        12) Frost Tower Website Checkup
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O13_FPGA_Programming/" class="md-nav__link">
+        13) FPGA Programming
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Terminal Challenges
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Terminal Challenges" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Terminal Challenges
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T2_Document_Analysis/" class="md-nav__link">
+        Pinny Sappington - Document Analysis / Exif Metadata
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T3_Grepping_for_Gold/" class="md-nav__link">
+        Greasy Gopherkins - Grepping for Gold
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T4_Logic_Munchers/" class="md-nav__link">
+        Noel Boetie - Logic Munchers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T5_IPv6_Sandbox/" class="md-nav__link">
+        Jewel Loggins - IPv6 Sandbox
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T6_Holiday_Hero/" class="md-nav__link">
+        Chimney Scissorsticks - Holiday Hero
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T8_HoHo_No/" class="md-nav__link">
+        Eve Snowshoes - HoHo No
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T9_Yara_Analysis/" class="md-nav__link">
+        Fitzy Shortstack - Yara Analysis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T10_IMDS_Exploration/" class="md-nav__link">
+        Noxious ODor - IMDS Exploration
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T11_Strace_Ltrace_Retrace/" class="md-nav__link">
+        Tinsel Upatree - Strace, Ltrace, Retrace
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T12_Elf_Code_Python/" class="md-nav__link">
+        Rib Bonbowford - Elf Code Python
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T13_Frostavator/" class="md-nav__link">
+        Grody Toiterson - Frostavator
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Extras
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Extras" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Extras
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extras/O2_Where_in_the_World_is_Caramel_Santaigo/" class="md-nav__link">
+        Extra Content for Where in the World is Caramel Santaigo
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extras/T4_Logic_Munchers/" class="md-nav__link">
+        Extra Content for Logic Munchers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extras/O11_Customer_Complaint_Analysis/" class="md-nav__link">
+        Extra Content for Customer Complaint Analysis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extras/O12_Frost_Tower_Website_Checkup/" class="md-nav__link">
+        Extra Content for Frost Tower Website Checkup
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#hints-and-resources" class="md-nav__link">
+    Hints and Resources
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troll-introduction" class="md-nav__link">
+    Troll Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    Solution
+  </a>
+  
+    <nav class="md-nav" aria-label="Solution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-introduction" class="md-nav__link">
+    1 - Introduction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-loops" class="md-nav__link">
+    2 - Loops
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-getting-started" class="md-nav__link">
+    3 - Getting Started
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-returning-a-value" class="md-nav__link">
+    4 - Returning a Value
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-system-calls" class="md-nav__link">
+    5 - System Calls
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-calling-into-the-void" class="md-nav__link">
+    6 - Calling Into the Void
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-getting-rip" class="md-nav__link">
+    7 - Getting RIP
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-hello-world" class="md-nav__link">
+    8 - Hello, World!
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-hello-world" class="md-nav__link">
+    9 - Hello, World!!
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-opening-a-file" class="md-nav__link">
+    10 - Opening a File
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-reading-a-file" class="md-nav__link">
+    11 - Reading a File
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completion" class="md-nav__link">
+    Completion
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+<h1 id="objective-6-shellcode-primer">Objective 6) Shellcode Primer</h1>
+<div class="admonition summary">
+<p class="admonition-title"><em>Difficulty</em>: <span class="twemoji" style="color: red;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M378.31 378.49 298.42 288h30.63c9.01 0 16.98-5 20.78-13.06 3.8-8.04 2.55-17.26-3.28-24.05L268.42 160h28.89c9.1 0 17.3-5.35 20.86-13.61 3.52-8.13 1.86-17.59-4.24-24.08L203.66 4.83c-6.03-6.45-17.28-6.45-23.32 0L70.06 122.31c-6.1 6.49-7.75 15.95-4.24 24.08C69.38 154.65 77.59 160 86.69 160h28.89l-78.14 90.91c-5.81 6.78-7.06 15.99-3.27 24.04C37.97 283 45.93 288 54.95 288h30.63L5.69 378.49c-6 6.79-7.36 16.09-3.56 24.26 3.75 8.05 12 13.25 21.01 13.25H160v24.45l-30.29 48.4c-5.32 10.64 2.42 23.16 14.31 23.16h95.96c11.89 0 19.63-12.52 14.31-23.16L224 440.45V416h136.86c9.01 0 17.26-5.2 21.01-13.25 3.8-8.17 2.44-17.47-3.56-24.26z"/></svg></span><span class="twemoji" style="color: red;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M378.31 378.49 298.42 288h30.63c9.01 0 16.98-5 20.78-13.06 3.8-8.04 2.55-17.26-3.28-24.05L268.42 160h28.89c9.1 0 17.3-5.35 20.86-13.61 3.52-8.13 1.86-17.59-4.24-24.08L203.66 4.83c-6.03-6.45-17.28-6.45-23.32 0L70.06 122.31c-6.1 6.49-7.75 15.95-4.24 24.08C69.38 154.65 77.59 160 86.69 160h28.89l-78.14 90.91c-5.81 6.78-7.06 15.99-3.27 24.04C37.97 283 45.93 288 54.95 288h30.63L5.69 378.49c-6 6.79-7.36 16.09-3.56 24.26 3.75 8.05 12 13.25 21.01 13.25H160v24.45l-30.29 48.4c-5.32 10.64 2.42 23.16 14.31 23.16h95.96c11.89 0 19.63-12.52 14.31-23.16L224 440.45V416h136.86c9.01 0 17.26-5.2 21.01-13.25 3.8-8.17 2.44-17.47-3.56-24.26z"/></svg></span><span class="twemoji" style="color: red;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M378.31 378.49 298.42 288h30.63c9.01 0 16.98-5 20.78-13.06 3.8-8.04 2.55-17.26-3.28-24.05L268.42 160h28.89c9.1 0 17.3-5.35 20.86-13.61 3.52-8.13 1.86-17.59-4.24-24.08L203.66 4.83c-6.03-6.45-17.28-6.45-23.32 0L70.06 122.31c-6.1 6.49-7.75 15.95-4.24 24.08C69.38 154.65 77.59 160 86.69 160h28.89l-78.14 90.91c-5.81 6.78-7.06 15.99-3.27 24.04C37.97 283 45.93 288 54.95 288h30.63L5.69 378.49c-6 6.79-7.36 16.09-3.56 24.26 3.75 8.05 12 13.25 21.01 13.25H160v24.45l-30.29 48.4c-5.32 10.64 2.42 23.16 14.31 23.16h95.96c11.89 0 19.63-12.52 14.31-23.16L224 440.45V416h136.86c9.01 0 17.26-5.2 21.01-13.25 3.8-8.17 2.44-17.47-3.56-24.26z"/></svg></span><span class="twemoji" style="color: grey;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M378.31 378.49 298.42 288h30.63c9.01 0 16.98-5 20.78-13.06 3.8-8.04 2.55-17.26-3.28-24.05L268.42 160h28.89c9.1 0 17.3-5.35 20.86-13.61 3.52-8.13 1.86-17.59-4.24-24.08L203.66 4.83c-6.03-6.45-17.28-6.45-23.32 0L70.06 122.31c-6.1 6.49-7.75 15.95-4.24 24.08C69.38 154.65 77.59 160 86.69 160h28.89l-78.14 90.91c-5.81 6.78-7.06 15.99-3.27 24.04C37.97 283 45.93 288 54.95 288h30.63L5.69 378.49c-6 6.79-7.36 16.09-3.56 24.26 3.75 8.05 12 13.25 21.01 13.25H160v24.45l-30.29 48.4c-5.32 10.64 2.42 23.16 14.31 23.16h95.96c11.89 0 19.63-12.52 14.31-23.16L224 440.45V416h136.86c9.01 0 17.26-5.2 21.01-13.25 3.8-8.17 2.44-17.47-3.56-24.26z"/></svg></span><span class="twemoji" style="color: grey;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M378.31 378.49 298.42 288h30.63c9.01 0 16.98-5 20.78-13.06 3.8-8.04 2.55-17.26-3.28-24.05L268.42 160h28.89c9.1 0 17.3-5.35 20.86-13.61 3.52-8.13 1.86-17.59-4.24-24.08L203.66 4.83c-6.03-6.45-17.28-6.45-23.32 0L70.06 122.31c-6.1 6.49-7.75 15.95-4.24 24.08C69.38 154.65 77.59 160 86.69 160h28.89l-78.14 90.91c-5.81 6.78-7.06 15.99-3.27 24.04C37.97 283 45.93 288 54.95 288h30.63L5.69 378.49c-6 6.79-7.36 16.09-3.56 24.26 3.75 8.05 12 13.25 21.01 13.25H160v24.45l-30.29 48.4c-5.32 10.64 2.42 23.16 14.31 23.16h95.96c11.89 0 19.63-12.52 14.31-23.16L224 440.45V416h136.86c9.01 0 17.26-5.2 21.01-13.25 3.8-8.17 2.44-17.47-3.56-24.26z"/></svg></span></p>
+<p>Complete the <a href="https://tracer.kringlecastle.com/">Shellcode Primer</a> in Jack's office. According to the last challenge, what is the secret to KringleCon success? "All of our speakers and organizers, providing the gift of ____, free to the community." Talk to Chimney Scissorsticks in the NetWars area for hints.</p>
+</div>
+<h2 id="hints-and-resources">Hints and Resources</h2>
+<details class="hint">
+<summary>Hints provided after helping Chimney Scissorsticks and completing the <a href="../../challenges/T6_Holiday_Hero">Holiday Hero</a> Terminal Challenge</summary>
+<p><strong>Shellcode Primer Primer</strong><br>
+If you run into any shellcode primers at the North Pole, be sure to read the directions and the comments in the shellcode source!<br>
+<br>
+<strong>Debugging Shellcode</strong><br>
+Also, troubleshooting shellcode can be difficult. Use the debugger step-by-step feature to watch values.<br>
+<br>
+<strong>Register Stomping</strong><br>
+Lastly, be careful not to overwrite any register values you need to reference later on in your shellcode.<br></p>
+</details>
+<h2 id="troll-introduction">Troll Introduction</h2>
+<details class="quote">
+<summary>Talk to Ruby Cyster in Jack's Office</summary>
+<p>Hey, I'm Ruby Cyster. Don't listen to anything my sister, Ingreta, says about me.<br>
+So I'm looking at this system, and it has me a little bit worried.<br>
+If I didn't know better, I'd say someone here is learning how to hack North Pole systems.<br>
+Who's got that kind of nerve!<br>
+Anyway, I hear some elf on the other roof knows a bit about this type of thing.</p>
+</details>
+<h2 id="solution">Solution</h2>
+<p>Open the Shellcode Primer by clicking on the monitor next to Ruby or use the direct link <a href="https://tracer.kringlecastle.com">https://tracer.kringlecastle.com</a>.</p>
+<p>The primer will walk you through eleven progressively more difficult shellcode exercises, solutions for which are provided below.</p>
+<h3 id="1-introduction">1 - Introduction</h3>
+<p>No code needs to be added to complete this level.</p>
+<h3 id="2-loops">2 - Loops</h3>
+<p>No code needs to be added to complete this level</p>
+<h3 id="3-getting-started">3 - Getting Started</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">; This is a comment! We&#39;ll use comments to help guide your journey.</span>
+<span class="c1">; Right now, we just need to RETurn!</span>
+<span class="c1">;</span>
+<span class="c1">; Enter a return statement below and hit Execute to see what happens!</span>
+<span class="nf">ret</span>
+</code></pre></div>
+<h3 id="4-returning-a-value">4 - Returning a Value</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">; TODO: Set rax to 1337</span>
+<span class="nf">mov</span> <span class="nb">rax</span><span class="p">,</span> <span class="mi">1337</span>
+<span class="nf">ret</span>
+
+<span class="c1">; Return, just like we did last time</span>
+<span class="nf">ret</span>
+</code></pre></div>
+<h3 id="5-system-calls">5 - System Calls</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">; TODO: Find the syscall number for sys_exit and put it in rax</span>
+<span class="nf">mov</span> <span class="nb">rax</span><span class="p">,</span> <span class="mi">60</span>
+
+<span class="c1">; TODO: Put the exit_code we want (99) in rdi</span>
+<span class="nf">mov</span> <span class="nb">rdi</span><span class="p">,</span> <span class="mi">99</span>
+
+<span class="c1">; Perform the actual syscall</span>
+<span class="nf">syscall</span>
+</code></pre></div>
+<h3 id="6-calling-into-the-void">6 - Calling Into the Void</h3>
+<p>No code needs to be added to complete this level</p>
+<h3 id="7-getting-rip">7 - Getting RIP</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">; Remember, this call pushes the return address to the stack</span>
+<span class="nf">call</span> <span class="nv">place_below_the_nop</span>
+
+<span class="c1">; This is where the function *thinks* it is supposed to return</span>
+<span class="nf">nop</span>
+
+<span class="c1">; This is a &#39;label&#39; - as far as the call knows, this is the start of a function</span>
+<span class="nl">place_below_the_nop:</span>
+
+<span class="c1">; TODO: Pop the top of the stack into rax</span>
+<span class="nf">pop</span> <span class="nb">rax</span>
+
+<span class="c1">; Return from our code, as in previous levels</span>
+<span class="nf">ret</span>
+</code></pre></div>
+<h3 id="8-hello-world">8 - Hello, World!</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">; This would be a good place for a call</span>
+<span class="nf">call</span> <span class="nv">foo</span>
+
+<span class="c1">; This is the literal string &#39;Hello World&#39;, null terminated, as code. Except</span>
+<span class="c1">; it&#39;ll crash if it actually tries to run, so we&#39;d better jump over it!</span>
+<span class="kd">db</span> <span class="s">&#39;Hello World&#39;</span><span class="p">,</span><span class="mi">0</span>
+
+<span class="c1">; This would be a good place for a label and a pop</span>
+<span class="nl">foo:</span>
+<span class="nf">pop</span> <span class="nb">rax</span>
+
+<span class="c1">; This would be a good place for a re... oh wait, it&#39;s already here. Hooray!</span>
+<span class="nf">ret</span>
+</code></pre></div>
+<h3 id="9-hello-world">9 - Hello, World!!</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">; TODO: Get a reference to this string into the correct register</span>
+<span class="nf">call</span> <span class="nv">foo</span>
+<span class="kd">db</span> <span class="s">&#39;Hello World!&#39;</span><span class="p">,</span><span class="mi">0</span>
+<span class="nl">foo:</span>
+
+<span class="c1">; Set up a call to sys_write</span>
+<span class="c1">; TODO: Set rax to the correct syscall number for sys_write</span>
+<span class="nf">mov</span> <span class="nb">rax</span><span class="p">,</span> <span class="mi">1</span>
+
+<span class="c1">; TODO: Set rdi to the first argument (the file descriptor, 1)</span>
+<span class="nf">mov</span> <span class="nb">rdi</span><span class="p">,</span> <span class="mi">1</span>
+
+<span class="c1">; TODO: Set rsi to the second argument (buf - this is the &quot;Hello World&quot; string)</span>
+<span class="nf">pop</span> <span class="nb">rsi</span>
+
+<span class="c1">; TODO: Set rdx to the third argument (length of the string, in bytes)</span>
+<span class="nf">mov</span> <span class="nb">rdx</span><span class="p">,</span> <span class="mi">12</span>
+
+<span class="c1">; Perform the syscall</span>
+<span class="nf">syscall</span>
+
+<span class="c1">; Return cleanly</span>
+<span class="nf">ret</span>
+</code></pre></div>
+<h3 id="10-opening-a-file">10 - Opening a File</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">; TODO: Get a reference to this string into the correct register</span>
+<span class="nf">call</span> <span class="nv">foo</span>
+<span class="kd">db</span> <span class="s">&#39;/etc/passwd&#39;</span><span class="p">,</span><span class="mi">0</span>
+<span class="nl">foo:</span>
+
+<span class="c1">; Set up a call to sys_open</span>
+<span class="c1">; TODO: Set rax to the correct syscall number</span>
+<span class="nf">mov</span> <span class="nb">rax</span><span class="p">,</span> <span class="mi">2</span>
+
+<span class="c1">; TODO: Set rdi to the first argument (the filename)</span>
+<span class="nf">pop</span> <span class="nb">rdi</span>
+
+<span class="c1">; TODO: Set rsi to the second argument (flags - 0 is fine)</span>
+<span class="nf">mov</span> <span class="nb">rsi</span><span class="p">,</span> <span class="mi">0</span>
+
+<span class="c1">; TODO: Set rdx to the third argument (mode - 0 is also fine)</span>
+<span class="nf">mov</span> <span class="nb">rdx</span><span class="p">,</span> <span class="mi">0</span>
+
+<span class="c1">; Perform the syscall</span>
+<span class="nf">syscall</span>
+
+<span class="c1">; syscall sets rax to the file handle, so to return the file handle we don&#39;t</span>
+<span class="c1">; need to do anything else!</span>
+<span class="nf">ret</span>
+</code></pre></div>
+<h3 id="11-reading-a-file">11 - Reading a File</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">; TODO: Get a reference to this</span>
+<span class="nf">call</span> <span class="nv">foo</span>
+<span class="kd">db</span> <span class="s">&#39;/var/northpolesecrets.txt&#39;</span><span class="p">,</span><span class="mi">0</span>
+<span class="nl">foo:</span>
+
+<span class="c1">; TODO: Call sys_open</span>
+<span class="c1">; rax = sys_open(2), rdi = filename, rsi and rdx = 0</span>
+<span class="nf">mov</span> <span class="nb">rax</span><span class="p">,</span> <span class="mi">2</span>
+<span class="nf">pop</span> <span class="nb">rdi</span>
+<span class="nf">mov</span> <span class="nb">rsi</span><span class="p">,</span> <span class="mi">0</span>
+<span class="nf">mov</span> <span class="nb">rdx</span><span class="p">,</span> <span class="mi">0</span>
+<span class="nf">syscall</span>
+
+<span class="c1">; TODO: Call sys_read on the file handle and read it into rsp</span>
+<span class="c1">; rax = sys_read(0), rdi = file handle, rsi = rsp (buffer), rdx = number of chars to read</span>
+<span class="c1">; remember that the previous syscall set rax to the value of the file handle</span>
+<span class="nf">mov</span> <span class="nb">rdi</span><span class="p">,</span> <span class="nb">rax</span>
+<span class="nf">mov</span> <span class="nb">rax</span><span class="p">,</span> <span class="mi">0</span>
+<span class="nf">mov</span> <span class="nb">rsi</span> <span class="p">,</span> <span class="nb">rsp</span>
+<span class="nf">mov</span> <span class="nb">rdx</span><span class="p">,</span> <span class="mi">255</span>
+<span class="nf">syscall</span>
+
+<span class="c1">; TODO: Call sys_write to write the contents from rsp to stdout (1)</span>
+<span class="c1">; rax = sys_write(1), rdi = stdout(1), rsi = buffer to output, rdx = number of chars</span>
+<span class="nf">mov</span> <span class="nb">rax</span><span class="p">,</span> <span class="mi">1</span>
+<span class="nf">mov</span> <span class="nb">rdi</span><span class="p">,</span> <span class="mi">1</span>
+<span class="nf">mov</span> <span class="nb">rsi</span><span class="p">,</span> <span class="nb">rsp</span>
+<span class="nf">mov</span> <span class="nb">rdx</span><span class="p">,</span> <span class="mi">255</span>
+<span class="nf">syscall</span>
+
+<span class="c1">; TODO: Call sys_exit</span>
+<span class="nf">mov</span> <span class="nb">rax</span><span class="p">,</span> <span class="mi">60</span>
+<span class="nf">syscall</span>
+</code></pre></div>
+<h2 id="completion">Completion</h2>
+<p>Running the code for the last exercise sends the following text to Stdout<br>
+<code>Secret to KringleCon success: all of our speakers and organizers, providing the gift of cyber security knowledge, free to the community.</code></p>
+<div class="admonition success">
+<p class="admonition-title">Answer</p>
+<p>cyber security knowledge</p>
+</div>
+<details class="quote">
+<summary>Talk to Ruby Cyster to receive hints for <a href="../O7_Printer_Exploitation">Objective 7) Printer Exploitation</a></summary>
+<p>Oh man - what is this all about? Great work though.<br>
+So first things first, you should definitely take a look at the firmware.<br>
+With that in-hand, you can pick it apart and see what's there.<br>
+Did you know that if you append multiple files of that type, the last one is processed?<br>
+Have you heard of <a href="https://blog.skullsecurity.org/2012/everything-you-need-to-know-about-hash-length-extension-attacks">Hash Extension Attacks</a>?<br>
+If something isn't working, be sure to check the output! The error messages are very verbose.<br>
+Everything else accomplished, you just might be able to get shell access to that dusty old thing!</p>
+</details>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../O5_Strange_USB_Device/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 5) Strange USB Device" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              5) Strange USB Device
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../O7_Printer_Exploitation/" class="md-footer__link md-footer__link--next" aria-label="Next: 7) Printer Exploitation" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              7) Printer Exploitation
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.tabs.link"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.0bbba5b5.min.js"}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e1a181d9.min.js"></script>
+      
+    
+  </body>
+</html>

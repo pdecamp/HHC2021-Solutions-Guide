@@ -1,0 +1,1016 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Paul DeCamp (KringleCon Attendee: Nutmeg)">
+      
+      
+        <link rel="canonical" href="https://pdecamp.github.io/HHC2021-Solutions-Guide/challenges/T6_Holiday_Hero/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.3">
+    
+    
+      
+        <title>Chimney Scissorsticks - Holiday Hero - 2021 SANS Holiday Hack Challenge Solutions Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.edf004c2.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#4cae4f">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="red">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#holiday-hero-terminal-challenge" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="2021 SANS Holiday Hack Challenge Solutions Guide" class="md-header__button md-logo" aria-label="2021 SANS Holiday Hack Challenge Solutions Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            2021 SANS Holiday Hack Challenge Solutions Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chimney Scissorsticks - Holiday Hero
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="2021 SANS Holiday Hack Challenge Solutions Guide" class="md-nav__button md-logo" aria-label="2021 SANS Holiday Hack Challenge Solutions Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    2021 SANS Holiday Hack Challenge Solutions Guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Welcome
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Objectives
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Objectives" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Objectives
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../objectives/O1_KringleCon_Orientation/" class="md-nav__link">
+        1) KringleCon Orientation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../objectives/O2_Where_in_the_World_is_Caramel_Santaigo/" class="md-nav__link">
+        2) Where in the World is Caramel Santaigo
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../objectives/O3_Thaw_Frost_Towers_Entrance/" class="md-nav__link">
+        3) Thaw Frost Tower's Entrance
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../objectives/O4_Slot_Machine_Investigation/" class="md-nav__link">
+        4) Slot Machine Investigation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../objectives/O5_Strange_USB_Device/" class="md-nav__link">
+        5) Strange USB Device
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../objectives/O6_Shellcode_Primer/" class="md-nav__link">
+        6) Shellcode Primer
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../objectives/O7_Printer_Exploitation/" class="md-nav__link">
+        7) Printer Exploitation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../objectives/O8_Kerberoasting_on_an_Open_Fire/" class="md-nav__link">
+        8) Kerberoasting on an Open Fire
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../objectives/O9_Splunk/" class="md-nav__link">
+        9) Splunk!
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../objectives/O10_Now_Hiring/" class="md-nav__link">
+        10) Now Hiring!
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../objectives/O11_Customer_Complaint_Analysis/" class="md-nav__link">
+        11) Customer Complaint Analysis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../objectives/O12_Frost_Tower_Website_Checkup/" class="md-nav__link">
+        12) Frost Tower Website Checkup
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../objectives/O13_FPGA_Programming/" class="md-nav__link">
+        13) FPGA Programming
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Terminal Challenges
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Terminal Challenges" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Terminal Challenges
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../T2_Document_Analysis/" class="md-nav__link">
+        Pinny Sappington - Document Analysis / Exif Metadata
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../T3_Grepping_for_Gold/" class="md-nav__link">
+        Greasy Gopherkins - Grepping for Gold
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../T4_Logic_Munchers/" class="md-nav__link">
+        Noel Boetie - Logic Munchers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../T5_IPv6_Sandbox/" class="md-nav__link">
+        Jewel Loggins - IPv6 Sandbox
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Chimney Scissorsticks - Holiday Hero
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Chimney Scissorsticks - Holiday Hero
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#elf-introduction" class="md-nav__link">
+    Elf Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hints-and-other-resources" class="md-nav__link">
+    Hints and Other Resources
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#open-the-terminal" class="md-nav__link">
+    Open the Terminal
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    Solution
+  </a>
+  
+    <nav class="md-nav" aria-label="Solution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#single-player-mode-step-1-modify-the-client-side-cookie" class="md-nav__link">
+    Single Player Mode step 1 - Modify the client-side cookie
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#single-player-mode-step-2-modify-the-javascript-variable" class="md-nav__link">
+    Single Player Mode step 2 - Modify the JavaScript variable
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completion" class="md-nav__link">
+    Completion
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../T8_HoHo_No/" class="md-nav__link">
+        Eve Snowshoes - HoHo No
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../T9_Yara_Analysis/" class="md-nav__link">
+        Fitzy Shortstack - Yara Analysis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../T10_IMDS_Exploration/" class="md-nav__link">
+        Noxious ODor - IMDS Exploration
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../T11_Strace_Ltrace_Retrace/" class="md-nav__link">
+        Tinsel Upatree - Strace, Ltrace, Retrace
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../T12_Elf_Code_Python/" class="md-nav__link">
+        Rib Bonbowford - Elf Code Python
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../T13_Frostavator/" class="md-nav__link">
+        Grody Toiterson - Frostavator
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Extras
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Extras" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Extras
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extras/O2_Where_in_the_World_is_Caramel_Santaigo/" class="md-nav__link">
+        Extra Content for Where in the World is Caramel Santaigo
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extras/T4_Logic_Munchers/" class="md-nav__link">
+        Extra Content for Logic Munchers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extras/O11_Customer_Complaint_Analysis/" class="md-nav__link">
+        Extra Content for Customer Complaint Analysis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extras/O12_Frost_Tower_Website_Checkup/" class="md-nav__link">
+        Extra Content for Frost Tower Website Checkup
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#elf-introduction" class="md-nav__link">
+    Elf Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hints-and-other-resources" class="md-nav__link">
+    Hints and Other Resources
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#open-the-terminal" class="md-nav__link">
+    Open the Terminal
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    Solution
+  </a>
+  
+    <nav class="md-nav" aria-label="Solution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#single-player-mode-step-1-modify-the-client-side-cookie" class="md-nav__link">
+    Single Player Mode step 1 - Modify the client-side cookie
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#single-player-mode-step-2-modify-the-javascript-variable" class="md-nav__link">
+    Single Player Mode step 2 - Modify the JavaScript variable
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completion" class="md-nav__link">
+    Completion
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+<h1 id="holiday-hero-terminal-challenge">Holiday Hero Terminal Challenge</h1>
+<h2 id="elf-introduction">Elf Introduction</h2>
+<details class="quote">
+<summary>Help Chimney Scissorsticks in the KringleCon Netwars area</summary>
+<p>Woo! I'm Chimney Scissorsticks, and I'm having a great time up here!<br>
+I've been hanging out with all these NetWars players and not worrying about what's going on next door.<br>
+In fact, I've really been having fun playing with this Holiday Hero terminal. You can use it to generate some jamming holiday tunes that help power Santa’s sleigh!<br>
+It's more fun to play with a friend but I've also heard there's a clever way to enable single player mode.<br>
+Single player mode? I heard it can be enabled by fiddling with two client-side values, one of which is passed to the server.<br>
+It's so much more fun and easier with a friend though!<br>
+Either way, we'd really appreciate your help getting the sleigh all fueled up.<br>
+Then I can get back to thinking about shellcode..<br></p>
+</details>
+<h2 id="hints-and-other-resources">Hints and Other Resources</h2>
+<details class="hint">
+<summary>Other Resources</summary>
+<p><strong>Chrome Developer Tools</strong><br>
+<a href="https://developer.chrome.com/docs/devtools/">https://developer.chrome.com/docs/devtools/</a></p>
+</details>
+<h2 id="open-the-terminal">Open the Terminal</h2>
+<p>Click on Santa's Sleigh on the roof of Santa's Castle to start the game.</p>
+<details class="info">
+<summary>Screenshot</summary>
+<p><img alt="" src="image1.png" /></p>
+</details>
+<h2 id="solution">Solution</h2>
+<p>The game can be won by playing it with another player, but where is the sense of accomplishment in that?  So this solution will describe how to force the game to run in single player mode so you don't have to share the glory with anyone else.</p>
+<p>Note that these instructions are written for the Chrome web browser.  Other browsers may have slightly different steps but the basics will be the same.  Also note that if you are using a privacy enhancing browser such as Brave, some things might not work exactly as expected (such as the client-side cookie not being saved).<br></p>
+<h3 id="single-player-mode-step-1-modify-the-client-side-cookie">Single Player Mode step 1 - Modify the client-side cookie</h3>
+<p>Open the browser Development Tools (<span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-shift">Shift</kbd><span>+</span><kbd class="key-i">I</kbd></span>, or from 'Menu &gt; More tools &gt; Developer tools') and start a game by selecting 'Create Room'</p>
+<p>While at the Welcome screen, open the Network panel in Developer Tools and filter on the type Doc.  There will be an entry for a URL containing the ID of the game just started.  Highlight it and view the 'Cookies' tab on the left.  Here we will find that the HOHOHO cookie has the value single_player set to false.</p>
+<details class="info">
+<summary>Screenshot</summary>
+<p><img alt="" src="image2.png" /></p>
+</details>
+<p>To modify this cookie open the Application panel, then drill down into 'Storage &gt; Cookies &gt; https://hero.kringlecastle.com' and edit the value to be true.</p>
+<details class="info">
+<summary>Screenshot</summary>
+<p><img alt="" src="image3.png" /></p>
+</details>
+<p>Note that this cookie is stored client side, so unless you clear cookies you shouldn't have to do this again if you start another game.</p>
+<h3 id="single-player-mode-step-2-modify-the-javascript-variable">Single Player Mode step 2 - Modify the JavaScript variable</h3>
+<p>The second value we need to change is in the JavaScript.  To find it open the Sources panel, then drill down into '<id> &gt; hero.kringlecastle.com &gt; assets/js &gt; holidayhero.min.js'.  The file is minified so select the option to 'Pretty-print' the file so we can read it.</p>
+<p>Viewing the code we see on line 22 that there is a variable named single_player_mode.  </p>
+<details class="info">
+<summary>Screenshot</summary>
+<p><img alt="" src="image4.png" /></p>
+</details>
+<p>To set this variable for the running session (this code is retrieved from the server every time the page is loaded), go to the Console panel, set the JavaScript context to the ID of the game, then set<br>
+<code>single_player_mode = true</code></p>
+<p>As soon as we do we will get the message that 'Player 2 (COMPUTER) has joined!'</p>
+<details class="info">
+<summary>Screenshot</summary>
+<p><img alt="" src="image5.png" /></p>
+</details>
+<p>Now we can start the game and the computer will play flawlessly as your partner.</p>
+<details class="info">
+<summary>Screenshot</summary>
+<p><img alt="" src="image6.png" /></p>
+</details>
+<h2 id="completion">Completion</h2>
+<details class="quote">
+<summary>Talk to Chimney after winning the game to receive hints for <a href="../../objectives/O6_Shellcode_Primer/">Objective 6) Shellcode Primer</a></summary>
+<p>You did it - rock on! We're all set now that the sleigh is fueled!<br>
+So hey, let me talk to you a bit about manual exploitation.<br>
+If you run into any shellcode primers at the North Pole, be sure to read the directions and the comments in the shellcode source!<br>
+Also, troubleshooting shellcode can be difficult. Use the debugger step-by-step feature to watch values.<br>
+Lastly, be careful not to overwrite any register values you need to reference later on in your shellcode.<br>
+That's it! I know you can do it!</p>
+</details>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../T5_IPv6_Sandbox/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Jewel Loggins - IPv6 Sandbox" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Jewel Loggins - IPv6 Sandbox
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../T8_HoHo_No/" class="md-footer__link md-footer__link--next" aria-label="Next: Eve Snowshoes - HoHo No" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Eve Snowshoes - HoHo No
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.tabs.link"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.0bbba5b5.min.js"}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e1a181d9.min.js"></script>
+      
+    
+  </body>
+</html>

