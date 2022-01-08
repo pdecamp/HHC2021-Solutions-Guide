@@ -1,0 +1,63 @@
+site_name: 2021 SANS Holiday Hack Challenge Solutions Guide
+site_url: https://pdecamp.github.io/HHC2021-Solutions-Guide/
+site_author: "Paul DeCamp (KringleCon Attendee: Nutmeg)"
+
+theme:
+    name: material
+    palette:
+        scheme: slate
+        primary: green
+        accent: red
+    features:
+        - content.tabs.link
+
+markdown_extensions:
+    - pymdownx.emoji:
+        emoji_index: !!python/name:materialx.emoji.twemoji
+        emoji_generator: !!python/name:materialx.emoji.to_svg
+    - attr_list
+    - admonition
+    - pymdownx.details        
+    - pymdownx.superfences
+    - tables
+    - pymdownx.keys
+    - pymdownx.tabbed:
+        alternate_style: true
+    - def_list
+    - pymdownx.caret
+    - pymdownx.mark
+    - pymdownx.tilde
+
+nav:
+    - Welcome: index.md
+    - Objectives:
+        - 1) KringleCon Orientation: objectives/O1_KringleCon_Orientation/index.md
+        - 2) Where in the World is Caramel Santaigo: objectives/O2_Where_in_the_World_is_Caramel_Santaigo/index.md
+        - 3) Thaw Frost Tower's Entrance: objectives/O3_Thaw_Frost_Towers_Entrance/index.md
+        - 4) Slot Machine Investigation: objectives/O4_Slot_Machine_Investigation/index.md
+        - 5) Strange USB Device: objectives/O5_Strange_USB_Device/index.md
+        - 6) Shellcode Primer: objectives/O6_Shellcode_Primer/index.md
+        - 7) Printer Exploitation: objectives/O7_Printer_Exploitation/index.md 
+        - 8) Kerberoasting on an Open Fire: objectives/O8_Kerberoasting_on_an_Open_Fire/index.md
+        - 9) Splunk!: objectives/O9_Splunk/index.md
+        - 10) Now Hiring!: objectives/O10_Now_Hiring/index.md
+        - 11) Customer Complaint Analysis: objectives/O11_Customer_Complaint_Analysis/index.md
+        - 12) Frost Tower Website Checkup: objectives/O12_Frost_Tower_Website_Checkup/index.md
+        - 13) FPGA Programming: objectives/O13_FPGA_Programming/index.md
+    - Terminal Challenges:
+        - Pinny Sappington - Document Analysis / Exif Metadata : challenges/T2_Document_Analysis/index.md
+        - Greasy Gopherkins - Grepping for Gold: challenges/T3_Grepping_for_Gold/index.md
+        - Noel Boetie - Logic Munchers: challenges/T4_Logic_Munchers/index.md
+        - Jewel Loggins - IPv6 Sandbox: challenges/T5_IPv6_Sandbox/index.md
+        - Chimney Scissorsticks - Holiday Hero: challenges/T6_Holiday_Hero/index.md
+        - Eve Snowshoes - HoHo No: challenges/T8_HoHo_No/index.md
+        - Fitzy Shortstack - Yara Analysis: challenges/T9_Yara_Analysis/index.md
+        - Noxious ODor - IMDS Exploration: challenges/T10_IMDS_Exploration/index.md
+        - Tinsel Upatree - Strace, Ltrace, Retrace: challenges/T11_Strace_Ltrace_Retrace/index.md
+        - Rib Bonbowford - Elf Code Python: challenges/T12_Elf_Code_Python/index.md
+        - Grody Toiterson - Frostavator: challenges/T13_Frostavator/index.md
+    - Extras:
+        - Extra Content for Where in the World is Caramel Santaigo: extras/O2_Where_in_the_World_is_Caramel_Santaigo/index.md
+        - Extra Content for Logic Munchers: extras/T4_Logic_Munchers/index.md
+        - Extra Content for Customer Complaint Analysis: extras/O11_Customer_Complaint_Analysis/index.md
+        - Extra Content for Frost Tower Website Checkup: extras/O12_Frost_Tower_Website_Checkup/index.md
